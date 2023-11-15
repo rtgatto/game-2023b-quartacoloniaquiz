@@ -1,0 +1,22 @@
+@startuml QuartaColoniaQuiz
+
+class dado
+{
+    + número
+}
+class jogador
+{
+    + posição.atual
+    + posição.anterior
+}
+class tabuleiro
+
+class casa
+
+tabuleiro o-- casa
+tabuleiro "1" -- "1" jogador
+jogador "1" -- "1" dado
+
+
+
+@enduml
