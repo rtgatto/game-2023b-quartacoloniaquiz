@@ -1,1 +1,11 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/TUsa8_pI)
+# Quarta Colônia Quiz
+
+## Objetivo do jogo
+Este jogo possibilita que os jogadores conheçam sobre localidades, geografia, história e cultura da Quarta Colônia.
+
+## Sobre o jogo
+Ele é composto por um tabuleiro, cujas casas possuem questões referentes aos objetivos do quiz. O jogador lança o dado e anda as casas necessárias referente ao número tirado no dado. 
+A casa pode ser de três tipos: quiz, plus ou less. Para o quiz, vai abrir uma nova tela, a qual terá uma foto referente a questão do quiz e suas opções. Se o jogador acertar o quiz, ele permanece nesta casa, caso contrário, ele retorna a casa de origem. 
+Haverá acontecimentos variados para o plus e less. 
+Ganha quando o jogador completar todo o tabuleiro.
+
