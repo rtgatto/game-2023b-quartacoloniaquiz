@@ -2,12 +2,12 @@
 
 class dado
 {
-    + número
+    número
 }
 class jogador
 {
-    + posição.atual
-    + posição.anterior
+    posição.atual
+    posição.anterior
 }
 class tabuleiro
 
