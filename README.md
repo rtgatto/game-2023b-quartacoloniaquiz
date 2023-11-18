@@ -13,7 +13,8 @@ Ganha quando o jogador chegar ao final do tabuleiro.
 
 ## Regras
 
-* Um evento não pode gerar uma cadeia de eventos. Ou seja, caso um evento obrigue o jogador a ir para outra casa, esta casa destino tem que ser uma casa sem evento, para não ativar uma cadeia de eventos e quebrar o comportamento do jogo.
+* Um evento não pode gerar uma cadeia de eventos. Ou seja, caso um evento obrigue o jogador a ir para outra casa, esta casa destino tem que ser uma casa sem evento, para não ativar uma cadeia de eventos e quebrar o comportamento do jogo;
+* Duas perguntas não podem se repetir em uma mesma partida. Ou seja, se uma pergunta já foi feita ao jogador, ela não poderá ser feita novamente até o final da partida em andamento.
 
 ## English
 
@@ -30,4 +31,5 @@ The player wins when reaching the end of the board.
 
 ## Rules
 
-* An event cannot generate a chain of events. In other words, if an event forces the player to go to another square, this destination square must be a no event square, not to break the game's behavior.
+* An event cannot generate a chain of events. In other words, if an event forces the player to go to another square, this destination square must be a no event square, not to break the game's behavior;
+* Two questions cannot be repeated in the same game. In other words, if a question has already been asked to the player, it cannot be asked again until the end of the ongoing game.
