@@ -1,9 +1,13 @@
 package com.mygdx.quiz;
 
+import com.badlogic.gdx.graphics.Texture;
+
 public class Board {
     private Square[] squares;
+    private Texture boardTexture;
 
-    public Board() {
+    public Board(Texture boardTexture) {
+        this.boardTexture = boardTexture;
         squares = new Square[120];
         initializeBoard();
     }
@@ -29,5 +33,9 @@ public class Board {
             }
         }
         return null; // No Event
+    }
+
+    public Texture getBoardTexture() {
+        return boardTexture;
     }
 }
