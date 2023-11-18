@@ -1,4 +1,4 @@
 package com.mygdx.quiz;
 
-public class Tabuleiro {
+public class Question {
 }
