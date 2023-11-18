@@ -7,7 +7,7 @@ public class Casa {
     private Texture img;
     private Quiz quiz;
 
-    public Casa(){
+    public Casa() {
 
     }
 }
