@@ -1,9 +1,9 @@
 package com.mygdx.quiz;
 
-public class Tabuleiro {
-    private Casas[] casas;
+public class Board {
+    private Squares[] squares;
 
-    public Borda() {
-        casas = new Casas[-1];
+    public Board() {
+        squares = new Squares[-1];
     }
 }

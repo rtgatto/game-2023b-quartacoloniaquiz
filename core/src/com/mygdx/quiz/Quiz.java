@@ -1,32 +1,32 @@
 package com.mygdx.quiz;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class Quiz {
-    private String pergunta;
-    private List<String> alternativas;
-    private int alternativaCorreta; // variável para guardar o índice da alternativa correta
+    private String question;
+    private List<String> options;
+    private int correctOptionIndex;
 
-    public Quiz(String pergunta, List<String> alternativas, int alternativaCorreta) {
-        this.pergunta = pergunta;
-        this.alternativas = alternativas;
-        this.alternativaCorreta = alternativaCorreta;
+    public Quiz(String question, List<String> options, int correctOptionIndex) {
+        this.question = question;
+        this.options = options;
+        this.correctOptionIndex = correctOptionIndex;
 
-        if (alternativaCorreta < 0 || alternativaCorreta >= alternativas.size()) {
-            throw new IllegalArgumentException("Índice de alternativa correta está fora dos limites permitidos");
+        if (correctOptionIndex < 0 || correctOptionIndex >= options.size()) {
+            throw new IllegalArgumentException("Correct option index is out of bounds");
         }
     }
 
-    public String getPergunta() {
-        return pergunta;
+    public String getQuestion() {
+        return question;
     }
 
-    public List<String> getAlternativas() {
-        return alternativas;
+    public List<String> getOptions() {
+        return options;
     }
 
-    // verificar se a alternativa escolhida é a correta
-    public boolean alternativaECorreta(int alternativaEscolhida) {
-        return alternativaEscolhida == alternativaCorreta;
+    public boolean isOptionCorrect(int selectedOptionIndex) {
+        return selectedOptionIndex == correctOptionIndex;
     }
 }

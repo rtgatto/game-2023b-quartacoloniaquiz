@@ -1,9 +1,9 @@
 package com.mygdx.quiz;
 
-public class Dado {
+public class Dice {
     private int value;
 
-    public Dado() {
+    public Dice() {
         roll();
     }
 
