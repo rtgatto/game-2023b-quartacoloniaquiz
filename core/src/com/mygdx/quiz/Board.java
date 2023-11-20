@@ -14,7 +14,7 @@ public class Board {
 
     private void initializeBoard() {
         for (int i = 0; i < squares.length; i++) {
-            squares[i] = new Square(i);
+            squares[i] = new Square();
         }
     }
 

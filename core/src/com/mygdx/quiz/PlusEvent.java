@@ -26,19 +26,19 @@ public class PlusEvent extends Event {
         return squaresToJump;
     }
 
-    public String getMessage() {
-        return defaultMessage + "You'll jump ahead " + calculateActualSquaresToJump() + " squares.";
+    public String getMessage(Player player) {
+        return defaultMessage + "You'll jump ahead " + calculateActualSquaresToJump(player) + " squares.";
     }
 
-    private int calculateActualSquaresToJump() {
+    private int calculateActualSquaresToJump(Player player) {
         // Calculate actual squares to jump after boundary checks
-        return Math.min(squaresToJump, 120 - getPosition());
+        return Math.min(squaresToJump, 120 - player.getPosition());
     }
 
     public void applyEvent(Player player) {
         int newPosition = player.getPosition() + getSquaresToJump();
         // Ensure the player doesn't jump out of boundaries
         player.move(Math.min(newPosition, 120) - player.getPosition()); // functional programming in Java way :)
-        System.out.println(getMessage()); // Display the message
+        System.out.println(getMessage(player)); // Display the message
     }
 }
