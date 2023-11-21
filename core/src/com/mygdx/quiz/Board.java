@@ -25,11 +25,11 @@ public class Board {
             // Within the event, 33% chance for each type (Quiz, Plus, Minus)
             double randomType = Math.random();
             if (randomType < 0.33) {
-                return new Event(0); // Quiz Event
+                return new Quiz();
             } else if (randomType < 0.66) {
-                return new Event(1); // Plus Event
+                return new PlusEvent(); // Plus Event
             } else {
-                return new Event(2); // Minus Event
+                return new MinusEvent(); // Minus Event
             }
         }
         return null; // No Event
