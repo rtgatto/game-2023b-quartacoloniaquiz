@@ -18,16 +18,16 @@ public class GameScreen implements Screen {
     private Texture texture;
     private ShapeRenderer shapeRenderer;
 
-
-    public GameScreen(QuartaColoniaQuiz quiz){
+    public GameScreen(QuartaColoniaQuiz quiz) {
         this.quiz = quiz;
         batch = new SpriteBatch();
         Gdx.graphics.setWindowedMode(1370, 715);
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 3400, 2323); 
+        camera.setToOrtho(false, 3400, 2323);
         texture = new Texture(Gdx.files.internal("mapa.png"));
         shapeRenderer = new ShapeRenderer();
     }
+
     @Override
     public void show() {
 
@@ -44,7 +44,6 @@ public class GameScreen implements Screen {
         batch.begin();
         batch.draw(texture, (1370 - texture.getWidth()) / 2f, (715 - texture.getHeight()) / 2f);
         batch.end();
-
 
     }
 

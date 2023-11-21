@@ -8,6 +8,7 @@ public abstract class Event {
     protected String defaultMessage;
     protected int squaresToJump;
     protected Texture texture;
+
     public Event(int type) {
         this.type = type;
     }
@@ -16,7 +17,7 @@ public abstract class Event {
         return type;
     }
 
-    public Texture getTexture(){
+    public Texture getTexture() {
         return texture;
     }
 

@@ -23,6 +23,7 @@ public class MinusEvent extends Event {
     public String getMessage(Player player) {
         return defaultMessage + "You'll jump back " + calculateActualSquaresToJump(player) + " squares.";
     }
+
     @Override
     protected int calculateActualSquaresToJump(Player player) {
         return Math.min(squaresToJump, player.getPosition());
