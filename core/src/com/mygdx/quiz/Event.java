@@ -30,5 +30,4 @@ public abstract class Event {
     protected abstract int calculateActualSquaresToJump(Player player);
 
     public abstract void applyEvent(Player player);
-
 }
