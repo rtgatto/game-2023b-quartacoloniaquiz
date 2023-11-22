@@ -1,21 +1,31 @@
 @startuml QuartaColoniaQuiz
 
-class dado
+class Dice
 {
-    número
+    number
 }
-class jogador
+class Player
 {
     posição.atual
     posição.anterior
 }
-class tabuleiro
+class Board
 
-class casa
+class Square
 
-tabuleiro o-- casa
-tabuleiro "1" -- "1" jogador
-jogador "1" -- "1" dado
+Board o-- Square
+Board -- Player
+
+Player -- Dice
+
+Square o-- Event
+PlusEvent --|> Event
+MinusEvent --|> Event
+Quiz --|> Event
+
+Dice -- Board
+
+
 
 
 
