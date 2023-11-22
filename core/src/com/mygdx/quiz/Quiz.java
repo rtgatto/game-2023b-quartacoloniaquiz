@@ -31,4 +31,19 @@ public class Quiz extends Event {
     public boolean isOptionCorrect(int selectedOptionIndex) {
         return selectedOptionIndex == correctOptionIndex;
     }
+
+    @Override
+    public String getMessage(Player player) {
+        return null;
+    }
+
+    @Override
+    protected int calculateActualSquaresToJump(Player player) {
+        return 0;
+    }
+
+    @Override
+    public void applyEvent(Player player) {
+
+    }
 }

@@ -5,34 +5,22 @@ import com.badlogic.gdx.graphics.Texture;
 public class Board {
     private Square[] squares;
     private Texture boardTexture;
+    public Dice dice;
 
     public Board(Texture boardTexture) {
+
         this.boardTexture = boardTexture;
         squares = new Square[120];
         initializeBoard();
+
+//        this.dice = new Dice();
     }
 
     private void initializeBoard() {
+//        read the csv
         for (int i = 0; i < squares.length; i++) {
-            squares[i] = new Square();
+            squares[i] = new Square(i); // add the line of csv to Square
         }
-    }
-
-    public Event getEventForSquare(int squareIndex) {
-        // 20% chance of an event happening
-        double randomEvent = Math.random();
-        if (randomEvent < 0.2) {
-            // Within the event, 33% chance for each type (Quiz, Plus, Minus)
-            double randomType = Math.random();
-            if (randomType < 0.33) {
-                return new Quiz();
-            } else if (randomType < 0.66) {
-                return new PlusEvent(); // Plus Event
-            } else {
-                return new MinusEvent(); // Minus Event
-            }
-        }
-        return null; // No Event
     }
 
     public Texture getBoardTexture() {
