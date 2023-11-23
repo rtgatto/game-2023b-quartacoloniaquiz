@@ -1,24 +1,17 @@
 @startuml QuartaColoniaQuiz
 
 class Dice
-{
-    number
-}
 class Player
-{
-    posição.atual
-    posição.anterior
-}
 class Board
-
 class Square
 
-Board o-- Square
-Board -- Player
+Board o-R- Square
+Board -L- Player
 
 Player -- Dice
 
 Square o-- Event
+
 PlusEvent --|> Event
 MinusEvent --|> Event
 Quiz --|> Event
