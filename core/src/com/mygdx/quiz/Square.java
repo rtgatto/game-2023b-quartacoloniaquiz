@@ -3,6 +3,8 @@ package com.mygdx.quiz;
 public class Square {
     private int number;
     public Event event;
+    protected int width = 250;
+    protected int legth = 250;
 
     public Square(int i) {
         this.number = i;
