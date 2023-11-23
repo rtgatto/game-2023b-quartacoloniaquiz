@@ -1,27 +1,37 @@
 package com.mygdx.quiz;
 
+import java.util.ArrayList;
+
 public class Square {
     private int number;
     public Event event;
-    protected int width = 250;
-    protected int legth = 250;
+    protected int width;
+    protected int length;
+    protected int y;
 
-    public Square(int i) {
+    public Square(int i, ArrayList<Quiz> quizzes) {
         this.number = i;
-        this.event = null;
+        this.event = createEvent(quizzes);
+        y = 0;
+        width = 195;
+        length = 195;
     }
 
-    public Event createEvent(){
-        // 20% chance of an event happening
+    public Event createEvent(ArrayList<Quiz> quizzes){
         double randomEvent = Math.random();
+        // 20% chance of an event happening
         if (randomEvent < 0.2) {
             // Within the event, 33% chance for each type (Quiz, Plus, Minus)
             double randomType = Math.random();
             if (randomType < 0.33) {
-//                return new Quiz(question, options, correctOptionIndex, boardTexture);
-            } else if (randomType < 0.66) {
+                Quiz quiz = quizzes.get(0);
+                quizzes.remove(0);
+                return quiz;
+            }
+            else if (randomType < 0.66) {
                 return new PlusEvent();
-            } else {
+            }
+            else {
                 return new MinusEvent();
             }
         }
