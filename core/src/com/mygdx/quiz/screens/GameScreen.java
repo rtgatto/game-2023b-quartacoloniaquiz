@@ -2,36 +2,31 @@ package com.mygdx.quiz.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.mygdx.quiz.Event;
 import com.mygdx.quiz.QuartaColoniaQuiz;
+import sun.awt.X11.XSetWindowAttributes;
 
 public class GameScreen implements Screen {
 
-    final QuartaColoniaQuiz game;
-    private Event event;
+    final QuartaColoniaQuiz quiz;
     private SpriteBatch batch;
     private OrthographicCamera camera;
-    private Texture texture;
     private ShapeRenderer shapeRenderer;
-    private Sprite sprite;
 
-
-    public GameScreen(QuartaColoniaQuiz game){
-        this.game = game;
+    public GameScreen(QuartaColoniaQuiz quiz) {
+        this.quiz = quiz;
         batch = new SpriteBatch();
-        Gdx.graphics.setWindowedMode(1250, 250); // W: 1370
+        Gdx.graphics.setWindowedMode(1250, 250);
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 800, 549);
-        texture = new Texture(Gdx.files.internal("mapa.png"));
+        camera.setToOrtho(false, 1250, 250);
         shapeRenderer = new ShapeRenderer();
-        sprite = new Sprite(texture);
     }
+
     @Override
     public void show() {
 
@@ -46,12 +41,18 @@ public class GameScreen implements Screen {
         shapeRenderer.setProjectionMatrix(camera.combined);
 
         batch.begin();
-        sprite.draw(batch);
         batch.end();
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(Color.BLUE);
+        shapeRenderer.rect(0, 0, 250, 250);
+        shapeRenderer.end();
+
     }
 
     @Override
     public void resize(int width, int height) {
+
     }
 
     @Override
@@ -72,7 +73,6 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         batch.dispose();
-        texture.dispose();
         shapeRenderer.dispose();
     }
 }
