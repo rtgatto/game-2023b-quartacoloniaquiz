@@ -28,4 +28,8 @@ public class Player {
     public Texture getPlayerTexture() {
         return playerTexture;
     }
+
+    public boolean checkWin() {
+        return position >= 119;
+    }
 }

@@ -8,22 +8,22 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.quiz.screens.GameScreen;
 
 public class QuartaColoniaQuiz extends Game {
-	private SpriteBatch batch;
+    private SpriteBatch batch;
 
-	@Override
-	public void create() {
-		batch = new SpriteBatch();
+    @Override
+    public void create() {
+        batch = new SpriteBatch();
 
-		this.setScreen(new GameScreen(this));
-	}
+        this.setScreen(new GameScreen(this));
+    }
 
-	@Override
-	public void render() {
-		super.render();
-	}
+    @Override
+    public void render() {
+        super.render();
+    }
 
-	@Override
-	public void dispose() {
-		batch.dispose();
-	}
+    @Override
+    public void dispose() {
+        batch.dispose();
+    }
 }
