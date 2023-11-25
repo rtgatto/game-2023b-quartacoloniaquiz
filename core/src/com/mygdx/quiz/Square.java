@@ -1,20 +1,30 @@
 package com.mygdx.quiz;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import com.opencsv.exceptions.CsvException;
 
 public class Square {
     private int number;
     public Event event;
-    protected int width;
-    protected int length;
-    protected int y;
+    public ArrayList<Quiz> quizzes;
 
-    public Square(int i, ArrayList<Quiz> quizzes) {
+    public Square(int i){
         this.number = i;
+        this.quizzes = readQuiz();
         this.event = createEvent(quizzes);
-        y = 0;
-        width = 195;
-        length = 195;
+    }
+
+    private ArrayList<Quiz> readQuiz() {
+        ArrayList<Quiz> quizzes;
+
+        try {
+            quizzes = QuizReader.readQuizzesFromCSV();
+        } catch (IOException | CsvException e) {
+            throw new RuntimeException(e);
+        }
+
+        return quizzes;
     }
 
     public Event createEvent(ArrayList<Quiz> quizzes){

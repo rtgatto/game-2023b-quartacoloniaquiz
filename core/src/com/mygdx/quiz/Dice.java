@@ -6,13 +6,13 @@ public class Dice {
     private int value;
     private Texture diceTexture;
 
-    public Dice(Texture diceTexture) {
+    public Dice() {
         this.diceTexture = diceTexture;
         roll();
     }
 
-    public void roll() {
-        value = (int) (Math.random() * 6) + 1;
+    public int roll() {
+        return (int) (Math.random() * 6) + 1;
     }
 
     public int getValue() {

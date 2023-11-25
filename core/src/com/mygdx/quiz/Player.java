@@ -1,16 +1,15 @@
 package com.mygdx.quiz;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Player {
-    private int playerId;
     private int position;
     private Texture playerTexture;
 
-    public Player(int playerId, Texture playerTexture) {
-        this.playerId = playerId;
+    public Player() {
         this.position = 0; // player starts at position 0
-        this.playerTexture = playerTexture;
+        this.playerTexture = new Texture(Gdx.files.internal("dino.png"));
     }
 
     public void move(int spaces) {
@@ -19,10 +18,6 @@ public class Player {
 
     public int getPosition() {
         return position;
-    }
-
-    public int getPlayerId() {
-        return playerId;
     }
 
     public Texture getPlayerTexture() {

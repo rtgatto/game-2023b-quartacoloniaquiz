@@ -8,10 +8,10 @@ public class QcqGame {
     private Player player;
     private Dice dice;
 
-    public Game() {
-        board = new Board(/* Add the board texture here */);
-        player = new Player(/* Add player ID and texture here */);
-        dice = new Dice(/* Add dice texture here */);
+    public QcqGame() {
+        board = new Board();
+        player = new Player();
+        dice = new Dice();
     }
 
     public void welcomeUser() {
@@ -44,7 +44,8 @@ public class QcqGame {
         // Check if the player has won
         if (player.checkWin()) {
             System.out.println("Congratulations! You reached the end of the board.");
-        } else {
+        }
+        else {
             // Continue the game loop or perform other actions as needed
         }
     }

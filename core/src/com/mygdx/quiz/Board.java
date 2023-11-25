@@ -7,11 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Board {
-    private Square[] squares;
-    public QuizReader reader;
-    public ArrayList<Quiz> quizes;
+    public Square[] squares;
 
-    public Board(Texture boardTexture) throws IOException, CsvException {
+    public Board() {
         squares = new Square[120];
 
         initializeBoard();
@@ -19,7 +17,10 @@ public class Board {
 
     private void initializeBoard() {
         for (int i = 0; i < squares.length; i++) {
-            squares[i] = new Square(i, quizes); // add the line of csv to Square
+            squares[i] = new Square(i);
         }
+    }
+    protected Event getEventForSquare (int position){
+        return squares[position].getEvent();
     }
 }
