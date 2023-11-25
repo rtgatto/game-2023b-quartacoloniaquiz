@@ -18,7 +18,10 @@ public class Board {
     }
 
     private void initializeBoard() {
-        for (int i = 0; i < squares.length; i++) {
+        squares[0] = new Square(0, quizes);
+        squares[0].setEvent(null);
+
+        for (int i = 1; i < squares.length; i++) {
             squares[i] = new Square(i, quizes); // add the line of csv to Square
         }
     }
