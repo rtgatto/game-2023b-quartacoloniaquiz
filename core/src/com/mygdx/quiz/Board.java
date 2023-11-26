@@ -17,6 +17,7 @@ public class Board {
 
     private void initializeBoard() {
         squares[0] = new Square(0);
+        squares[0].setEvent(null);
 
         ArrayList<Quiz> quizzes = readQuiz();
 
@@ -24,7 +25,8 @@ public class Board {
             squares[i] = new Square(i, quizzes); // add the line of csv to Square
         }
     }
-    protected Event getEventForSquare (int position){
+
+    protected Event getEventForSquare(int position) {
         return squares[position].getEvent();
     }
 
