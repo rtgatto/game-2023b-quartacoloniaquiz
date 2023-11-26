@@ -7,16 +7,20 @@ import com.opencsv.exceptions.CsvException;
 public class Square {
     private int number;
     public Event event;
-    public Square(int i, ArrayList<Quiz> quizzes){
+    private Texture squareTexture;
+
+    public Square(int i, ArrayList<Quiz> quizzes) {
         this.number = i;
         this.event = createEvent(quizzes);
+        this.squareTexture = squareTexture;
     }
-    public Square(int i){
+
+    public Square(int i) {
         this.number = i;
         this.event = null;
     }
 
-    public Event createEvent(ArrayList<Quiz> quizzes){
+    public Event createEvent(ArrayList<Quiz> quizzes) {
         double randomEvent = Math.random();
 
         // 20% chance of an event happening
@@ -27,16 +31,15 @@ public class Square {
                 Quiz quiz = quizzes.get(0);
                 quizzes.remove(0);
                 return quiz;
-            }
-            else if (randomType < 0.66) {
+            } else if (randomType < 0.66) {
                 return new PlusEvent();
-            }
-            else {
+            } else {
                 return new MinusEvent();
             }
         }
         return null;
     }
+
     public void setEvent(Event event) {
         this.event = event;
     }
