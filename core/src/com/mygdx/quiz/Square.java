@@ -7,28 +7,18 @@ import com.opencsv.exceptions.CsvException;
 public class Square {
     private int number;
     public Event event;
-    public ArrayList<Quiz> quizzes;
-
-    public Square(int i){
+    public Square(int i, ArrayList<Quiz> quizzes){
         this.number = i;
-        this.quizzes = readQuiz();
         this.event = createEvent(quizzes);
     }
-
-    private ArrayList<Quiz> readQuiz() {
-        ArrayList<Quiz> quizzes;
-
-        try {
-            quizzes = QuizReader.readQuizzesFromCSV();
-        } catch (IOException | CsvException e) {
-            throw new RuntimeException(e);
-        }
-
-        return quizzes;
+    public Square(int i){
+        this.number = i;
+        this.event = null;
     }
 
     public Event createEvent(ArrayList<Quiz> quizzes){
         double randomEvent = Math.random();
+
         // 20% chance of an event happening
         if (randomEvent < 0.2) {
             // Within the event, 33% chance for each type (Quiz, Plus, Minus)
