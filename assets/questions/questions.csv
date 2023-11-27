@@ -1,4 +1,8 @@
 city,point,question,option0,option1,option2,option3,option4,correctOptionIndex
-ivora,monte_grappa,Qual é a altura do Monte Grappa?,1) 465 metros,2) 470 metros,3) 475 metros,4) 480 metros,5) 485 metros,0
-ivora,monte_grappa,Em que cidade da Quarta Colônia se encontra o Monte Grappa?,1) Faxinal do Soturno,2) Nova Palma,3) Dona Francisca,4) Ivorá,5) Silveira Martins,3
-silveira_martins,monumento_imigrante,Em que cidade da Quarta Colônia se encontra o Monumento do Imigrante Italiano?,1) Faxinal do Soturno,2) Nova Palma,3) Dona Francisca,4) Restinga Seca,5) Silveira Martins,4
+Ivorá,monte_grappa,Qual é a altura do Monte Grappa?,1) 465 metros,2) 470 metros,3) 475 metros,4) 480 metros,5) 485 metros,0
+Ivorá,monte_grappa,Em que cidade da Quarta Colônia se encontra o Monte Grappa?,1) Faxinal do Soturno,2) Nova Palma,3) Dona Francisca,4) Ivorá,5) Silveira Martins,3
+Silveira Martins,monumento_imigrante,Em que cidade da Quarta Colônia se encontra o Monumento do Imigrante Italiano?,1) Faxinal do Soturno,2) Nova Palma,3) Dona Francisca,4) Restinga Seca,5) Silveira Martins,4
+Ivorá,cascata_cara_indio,Em que cidade da Quarta Colônia se encontra a Cascata Cara de Índio?,1) Nova Palma,2) Ivorá,3) Dona Francisca,4) São João do Polêsine,5) Silveira Martins,1
+Ivorá,ivora,Quantas cascatas tem a cidade de Ivorá?,1) 10,2) 12,3) 15,4) 17,5) 20,3
+Ivorá,ivora,Em qual cidade da Quarta Colônia nasceu Alberto Pasqualini?,1) Nova Palma,2) Dona Francisca,3) Ivorá,4) São João do Polêsine,5) Silveira Martins,2
+Ivorá,caminho_Harmonia,Localizado a 10 km de Ivorá, este lugar possui trilhas que acessam a antiga "roça" e possui o lema "ver, escutar e sentir". Trata-se do(a):,1) Monte Grapa,2) Monumento do Imigrante Italiano,3) Cerro da Figueira,4) Balneário Municipal Atílio Aléssio,5) Caminho da Harmonia,4
