@@ -1,5 +1,3 @@
-// read questions from our csv
-
 package com.mygdx.quiz;
 
 import com.badlogic.gdx.Gdx;
@@ -13,10 +11,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class QuizReader {
-    public QuizReader(){
+    public QuizReader() {
     }
 
-    public static ArrayList<Quiz> readQuizzesFromCSV() throws IOException, CsvException {
+    public static ArrayList<Quiz> readQuizzesFromCSV() {
         ArrayList<Quiz> quizzes = new ArrayList<>();
 
         try (CSVReader reader = new CSVReader(new FileReader("questions/questions.csv"))) {
@@ -33,6 +31,8 @@ public class QuizReader {
                 Quiz quiz = new Quiz(question, options, correctOptionIndex, texture);
                 quizzes.add(quiz);
             }
+        } catch (IOException | CsvException e) {
+            e.printStackTrace(); // or handle the exception as appropriate
         }
 
         return quizzes;

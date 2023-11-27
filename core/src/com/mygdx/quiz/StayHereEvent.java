@@ -3,9 +3,9 @@ package com.mygdx.quiz;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
-public class StayHereEvent extends Event{
+public class StayHereEvent extends Event {
 
-    public StayHereEvent(){
+    public StayHereEvent() {
         super(0);
         super.defaultMessage = "Stay here.";
         super.texture = new Texture(Gdx.files.internal("img/null.png"));

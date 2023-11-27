@@ -1,5 +1,7 @@
 package com.mygdx.quiz;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
@@ -8,10 +10,11 @@ public class QcqGame {
     private Player player;
     private Dice dice;
 
-    public QcqGame() {
-        board = new Board();
-        player = new Player();
-        dice = new Dice();
+    public void setNewGame() {
+            board = new Board();
+            player = new Player();
+            dice = new Dice();
+        } 
     }
 
     public void welcomeUser() {
@@ -44,8 +47,7 @@ public class QcqGame {
         // Check if the player has won
         if (player.checkWin()) {
             System.out.println("Congratulations! You reached the end of the board.");
-        }
-        else {
+        } else {
             // Continue the game loop or perform other actions as needed
         }
     }

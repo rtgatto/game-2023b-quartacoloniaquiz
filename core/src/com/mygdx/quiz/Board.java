@@ -11,7 +11,7 @@ public class Board {
 
     public Board() {
         squares = new Square[120];
-//        this.boardTexture = boardTexture;
+        // this.boardTexture = boardTexture;
 
         initializeBoard();
     }
@@ -19,7 +19,7 @@ public class Board {
     private void initializeBoard() {
         squares[0] = new Square(0);
 
-        ArrayList<Quiz> quizzes = readQuiz();
+        ArrayList<Quiz> quizzes = QuizReader.readQuizzesFromCSV();
 
         for (int i = 1; i < squares.length; i++) {
             squares[i] = new Square(i, quizzes); // add the line of csv to Square
@@ -28,17 +28,5 @@ public class Board {
 
     protected Event getEventForSquare(int position) {
         return squares[position].getEvent();
-    }
-
-    private ArrayList<Quiz> readQuiz() {
-        ArrayList<Quiz> quizzes;
-
-        try {
-            quizzes = QuizReader.readQuizzesFromCSV();
-        } catch (IOException | CsvException e) {
-            throw new RuntimeException(e);
-        }
-
-        return quizzes;
     }
 }
