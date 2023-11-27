@@ -22,6 +22,7 @@ public class Square {
     public Square(int i) {
         this.number = i;
         this.event = new StayHereEvent();
+        this.texture = setRandomTexture();
     }
 
     public Event createEvent(ArrayList<Quiz> quizzes) {

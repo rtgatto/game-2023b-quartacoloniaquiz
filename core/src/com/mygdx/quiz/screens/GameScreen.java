@@ -44,13 +44,10 @@ public class GameScreen implements Screen {
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
-        MyRectangle rectangle = rectangles[0];
-
         game.batch.begin();
-//        for (MyRectangle rectangle : rectangles){
-//            game.batch.draw(rectangle.texture, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-//        }
-        game.batch.draw(rectangle.texture, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+        for (MyRectangle rectangle : rectangles){
+            game.batch.draw(rectangle.texture, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+        }
         game.batch.end();
 
     }
