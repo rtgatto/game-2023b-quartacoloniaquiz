@@ -15,7 +15,6 @@ public class QcqGame {
             player = new Player();
             dice = new Dice();
         } 
-    }
 
     public void welcomeUser() {
         System.out.println("Welcome to the Quiz Game!");
