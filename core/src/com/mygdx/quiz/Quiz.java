@@ -9,7 +9,7 @@ public class Quiz extends Event {
     private int correctOptionIndex;
 
     public Quiz(String question, List<String> options, int correctOptionIndex, Texture quizTexture) {
-        super(0);
+        super(1);
         this.question = question;
         this.options = options;
         this.correctOptionIndex = correctOptionIndex;

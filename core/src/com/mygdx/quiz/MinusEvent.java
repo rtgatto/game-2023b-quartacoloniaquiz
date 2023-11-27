@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 public class MinusEvent extends Event {
 
     public MinusEvent() {
-        super(2); // Assuming 2 represents a Minus Event
+        super(3); // Assuming 3 represents a Minus Event
         this.texture = null; // Add minus texture image
         this.defaultMessage = "Oh no! You got a Minus Event. ";
         this.squaresToJump = (int) (Math.random() * 10) + 1; // Random number from 1 to 10

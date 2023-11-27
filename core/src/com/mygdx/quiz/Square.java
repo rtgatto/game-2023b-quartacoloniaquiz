@@ -2,7 +2,9 @@ package com.mygdx.quiz;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import com.opencsv.exceptions.CsvException;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 
 public class Square {
     private int number;
@@ -17,7 +19,7 @@ public class Square {
 
     public Square(int i) {
         this.number = i;
-        this.event = null;
+        this.event = new StayHereEvent();
     }
 
     public Event createEvent(ArrayList<Quiz> quizzes) {
@@ -37,7 +39,7 @@ public class Square {
                 return new MinusEvent();
             }
         }
-        return null;
+        return new StayHereEvent();
     }
 
     public void setEvent(Event event) {

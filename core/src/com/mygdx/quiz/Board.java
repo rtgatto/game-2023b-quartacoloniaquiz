@@ -1,6 +1,5 @@
 package com.mygdx.quiz;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.opencsv.exceptions.CsvException;
 import java.io.IOException;
@@ -12,14 +11,13 @@ public class Board {
 
     public Board() {
         squares = new Square[120];
-        this.boardTexture = boardTexture;
+//        this.boardTexture = boardTexture;
 
         initializeBoard();
     }
 
     private void initializeBoard() {
         squares[0] = new Square(0);
-        squares[0].setEvent(null);
 
         ArrayList<Quiz> quizzes = readQuiz();
 

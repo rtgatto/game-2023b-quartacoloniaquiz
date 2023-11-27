@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 public class PlusEvent extends Event {
 
     public PlusEvent() {
-        super(1); // Assuming 1 represents a Plus Event
+        super(2); // Assuming 2 represents a Plus Event
         this.texture = null; // Add plus texture image
         this.defaultMessage = "You got a Plus Event! ";
         this.squaresToJump = (int) (Math.random() * 10) + 1; // Random number of squares to jump, from 1 to 10
