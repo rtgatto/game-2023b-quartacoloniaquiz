@@ -17,7 +17,7 @@ public class QuizReader {
     public static ArrayList<Quiz> readQuizzesFromCSV() {
         ArrayList<Quiz> quizzes = new ArrayList<>();
 
-        try (CSVReader reader = new CSVReader(new FileReader("questions/questions.csv"))) {
+        try (CSVReader reader = new CSVReader(new FileReader(String.valueOf(Gdx.files.internal("questions/questions.csv"))))) {
             reader.readNext();
             List<String[]> rows = reader.readAll();
 
