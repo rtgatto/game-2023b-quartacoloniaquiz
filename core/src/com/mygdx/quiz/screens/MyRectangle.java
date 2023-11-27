@@ -10,7 +10,7 @@ public class MyRectangle extends Rectangle {
 
     public MyRectangle(Square square, int _x){
         this.square = square;
-        this.texture = square.event.getTexture();
+        this.texture = square.getTexture();
 
         x = _x;
         y = 0;

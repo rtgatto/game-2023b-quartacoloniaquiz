@@ -16,7 +16,7 @@ public class GameScreen implements Screen {
 
     public GameScreen(QuartaColoniaQuiz game) {
         this.game = game;
-        Gdx.graphics.setWindowedMode(1365, 195);
+        Gdx.graphics.setWindowedMode(1365, 195); // 1365, 195
 
         board = new Board();
 
@@ -39,15 +39,18 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(0, 0, 0.2f, 1);
+        ScreenUtils.clear(245,255,250, 1);
 
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
+        MyRectangle rectangle = rectangles[0];
+
         game.batch.begin();
-        for (MyRectangle rectangle : rectangles){
-            game.batch.draw(rectangle.texture, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-        }
+//        for (MyRectangle rectangle : rectangles){
+//            game.batch.draw(rectangle.texture, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+//        }
+        game.batch.draw(rectangle.texture, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         game.batch.end();
 
     }
