@@ -34,6 +34,7 @@ public class PlusEvent extends Event {
     public void applyEvent(Player player) {
         int newPosition = player.position.getCurrent() + getSquaresToJump();
         // Ensure the player doesn't jump out of boundaries
-        player.move(Math.min(newPosition, 120) - player.position.getCurrent());
+
+        player.move(Math.min(newPosition, 119) - player.position.getCurrent()); // functional programming in Java way :)
     }
 }

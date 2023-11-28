@@ -14,7 +14,7 @@ public class Player {
     }
 
     public void move(int spaces) {
-        position.setPositions(position.getCurrent() + spaces, position.getCurrent());
+        position.setPositions(position.getCurrent(), position.getCurrent() + spaces);
     }
 
     public Texture getPlayerTexture() {
@@ -25,4 +25,3 @@ public class Player {
         return position.getCurrent() >= 119;
     }
 }
-
