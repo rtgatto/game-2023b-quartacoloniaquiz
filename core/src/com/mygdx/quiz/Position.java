@@ -9,7 +9,7 @@ public class Position {
         this.previous = 0;
     }
 
-    public void setPositions(int current, int previus) {
+    public void setPositions(int previous, int current) {
         this.current = current;
         this.previous = previous;
     }
