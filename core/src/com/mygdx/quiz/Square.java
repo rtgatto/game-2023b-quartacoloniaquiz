@@ -28,8 +28,8 @@ public class Square {
     public Event createEvent(ArrayList<Quiz> quizzes) {
         double randomEvent = Math.random();
 
-        // 20% chance of an event happening
-        if (randomEvent < 0.2) {
+        // 30% chance of an event happening
+        if (randomEvent < 0.3) {
             // Within the event, 33% chance for each type (Quiz, Plus, Minus)
             double randomType = Math.random();
             if (randomType < 0.33) {
@@ -60,7 +60,7 @@ public class Square {
         return 0; // Default value for no event
     }
 
-    private Texture setRandomTexture(){
+    private Texture setRandomTexture() {
         ArrayList<String> namesTextures = new ArrayList<>();
         Random random = new Random();
 
