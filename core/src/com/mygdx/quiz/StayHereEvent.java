@@ -7,13 +7,13 @@ public class StayHereEvent extends Event {
 
     public StayHereEvent() {
         super(0);
-        super.defaultMessage = "Stay here.";
+        super.defaultMessage = "Stay here and roll your dice.";
         super.texture = new Texture(Gdx.files.internal("img/null.png"));
     }
 
     @Override
     public String getMessage(Player player) {
-        return null;
+        return defaultMessage;
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.mygdx.quiz;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.quiz.screens.GameScreen;
+import com.mygdx.quiz.screens.ScreenManager;
 
 public class QuartaColoniaQuiz extends Game {
     public SpriteBatch batch;
@@ -11,7 +12,10 @@ public class QuartaColoniaQuiz extends Game {
     public void create() {
         batch = new SpriteBatch();
 
-        this.setScreen(new GameScreen(this));
+//        this.setScreen(new GameScreen(this));
+        ScreenManager.initialize(this);
+
+        ScreenManager.setScreen(new GameScreen(this));
     }
 
     @Override

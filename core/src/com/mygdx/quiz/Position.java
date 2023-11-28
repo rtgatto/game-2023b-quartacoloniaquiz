@@ -21,4 +21,8 @@ public class Position{
     public int getPrevius(){
         return this.previus;
     }
+
+    public void returnSquares(){
+        this.current = this.getPrevius();
+    }
 }

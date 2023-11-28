@@ -22,7 +22,7 @@ public class Board {
         ArrayList<Quiz> quizzes = QuizReader.readQuizzesFromCSV();
 
         for (int i = 1; i < squares.length; i++) {
-            squares[i] = new Square(i, quizzes); // add the line of csv to Square
+            squares[i] = new Square(i, quizzes);
         }
     }
 
