@@ -1,24 +1,24 @@
 package com.mygdx.quiz;
 
-public class Position{
+public class Position {
     protected int current;
-    protected int previus;
+    protected int previous;
 
-    public Position(){
+    public Position() {
         this.current = 0;
-        this.previus = 0;
+        this.previous = 0;
     }
 
-    public void setPositions(int current, int previus){
+    public void setPositions(int current, int previus) {
         this.current = current;
-        this.previus = previus;
+        this.previous = previous;
     }
 
-    public int getCurrent(){
+    public int getCurrent() {
         return this.current;
     }
 
-    public int getPrevius(){
-        return this.previus;
+    public int getPrevius() {
+        return this.previous;
     }
 }
