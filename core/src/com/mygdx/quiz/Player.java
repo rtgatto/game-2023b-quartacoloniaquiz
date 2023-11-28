@@ -2,29 +2,27 @@ package com.mygdx.quiz;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.quiz.Position;
 
 public class Player {
-    private int position;
-    private Texture playerTexture;
+    public Position position;
+    public Texture texture;
 
     public Player() {
-        this.position = 0; // player starts at position 0
-        this.playerTexture = new Texture(Gdx.files.internal("dino.png"));
+        this.position = new Position(); // player starts at position 0
+        this.texture = new Texture(Gdx.files.internal("img/player.png"));
     }
 
     public void move(int spaces) {
-        this.position += spaces;
-    }
-
-    public int getPosition() {
-        return position;
+        position.setPositions(position.getCurrent() + spaces, position.getCurrent());
     }
 
     public Texture getPlayerTexture() {
-        return playerTexture;
+        return texture;
     }
 
     public boolean checkWin() {
-        return position >= 119;
+        return position.getCurrent() >= 119;
     }
 }
+

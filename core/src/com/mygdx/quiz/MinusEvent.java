@@ -26,13 +26,13 @@ public class MinusEvent extends Event {
 
     @Override
     protected int calculateActualSquaresToJump(Player player) {
-        return Math.max(player.getPosition() - squaresToJump, 0);
+        return Math.max(player.position.getCurrent() - squaresToJump, 0);
     }
 
     @Override
     public void applyEvent(Player player) {
-        int newPosition = player.getPosition() - getSquaresToJump();
+        int newPosition = player.position.getCurrent() - getSquaresToJump();
         // Ensure the player doesn't jump out of boundaries
-        player.move(Math.max(newPosition, 0) - player.getPosition());// functional programming in Java way :)
+        player.move(Math.max(newPosition, 0) - player.position.getCurrent());// functional programming in Java way :)
     }
 }

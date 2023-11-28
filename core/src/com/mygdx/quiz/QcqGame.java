@@ -6,28 +6,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
 public class QcqGame {
-    private Board board;
-    private Player player;
-    private Dice dice;
+    public Board board;
+    public Player player;
+    public Dice dice;
 
-    public void setNewGame() {
+    public QcqGame() {
             board = new Board();
             player = new Player();
             dice = new Dice();
-        } 
-
-    public void welcomeUser() {
-        System.out.println("Welcome to the Quiz Game!");
-        System.out.println("Press ENTER to roll the dice.");
     }
 
-    public void startGame() {
-        welcomeUser();
-
-        // Wait for user input (ENTER key) to roll the dice
-        while (!Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            // You can add a delay here if needed
-        }
+    public void playing() {
 
         // Perform the dice roll and update the game state
         int diceValue = dice.roll();
@@ -37,7 +26,7 @@ public class QcqGame {
         player.move(diceValue);
 
         // Apply the event on the board square where the player landed
-        Event event = board.getEventForSquare(player.getPosition());
+        Event event = board.getEventForSquare(player.position.getCurrent());
         if (event != null) {
             event.applyEvent(player);
             System.out.println(event.getMessage(player));
