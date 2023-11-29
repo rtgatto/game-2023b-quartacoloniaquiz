@@ -21,7 +21,6 @@ public class GameScreen implements Screen {
     public BitmapFont font;
 
 
-
     public GameScreen(QuartaColoniaQuiz game) {
         this.game = game;
 
@@ -79,6 +78,7 @@ public class GameScreen implements Screen {
         else {
 //            ScreenManager.setScreen(new EventScreen(player, board, this, board.squares[player.position.getCurrent()]));
             Event event = board.squares[player.position.getCurrent()].event;
+
             SpriteBatch spriteBatch = new SpriteBatch();
             spriteBatch.begin();
             spriteBatch.draw(event.getTexture(), 0, 0, event.getTexture().getWidth(), event.getTexture().getHeight());
@@ -86,8 +86,12 @@ public class GameScreen implements Screen {
             if (event instanceof Quiz){
                 Quiz quiz = (Quiz) event;
                 int y = Gdx.graphics.getHeight() + 30;
+//                font.draw(spriteBatch, quiz.getQuestion(), 10, 10);
+                System.out.print(quiz.getQuestion());
+
                 for (String option : quiz.getOptions()){
-                    font.draw(spriteBatch, option, 10, y);
+//                    font.draw(spriteBatch, option, 10, y);
+                    System.out.print(option);
                     y += 10;
                 }
                 int numberDown = getNumberDown();
@@ -95,7 +99,7 @@ public class GameScreen implements Screen {
                 quiz.isOptionCorrect(numberDown, player);
             }
             else {
-                font.draw(spriteBatch, event.getMessage(player), 10, Gdx.graphics.getHeight() + 30);
+                System.out.print(event.getMessage(player));
                 if (Gdx.input.isKeyPressed(Input.Keys.ENTER)){
                     gameStatus = GameStatus.RUNNIG;
                 }

@@ -7,9 +7,9 @@ public class MinusEvent extends Event {
 
     public MinusEvent() {
         super(3); // Assuming 3 represents a Minus Event
-        this.texture = new Texture(Gdx.files.internal("img/bagualosaurus.png")); // Add minus texture image
-        this.defaultMessage = "Oh no! You got a Minus Event. ";
-        this.squaresToJump = (int) (Math.random() * 10) + 1; // Random number from 1 to 10
+        super.texture = new Texture(Gdx.files.internal("img/bagualosaurus.png")); // Add minus texture image
+        super.defaultMessage = "Oh no! You got a Minus Event. ";
+        super.squaresToJump = (int) (Math.random() * 10) + 1; // Random number from 1 to 10
     }
 
     public Texture getMinusTexture() {

@@ -7,9 +7,9 @@ public class PlusEvent extends Event {
 
     public PlusEvent() {
         super(2); // Assuming 2 represents a Plus Event
-        this.texture = new Texture(Gdx.files.internal("img/quarta_colonia.png")); // Add plus texture image
-        this.defaultMessage = "You got a Plus Event! ";
-        this.squaresToJump = new Dice().roll();
+        super.texture = new Texture(Gdx.files.internal("img/quarta_colonia.png")); // Add plus texture image
+        super.defaultMessage = "You got a Plus Event! ";
+        super.squaresToJump = new Dice().roll();
     }
 
     public Texture getPlusTexture() {
@@ -20,7 +20,7 @@ public class PlusEvent extends Event {
         return squaresToJump;
     }
 
-    @Override
+//    @Override
     public String getMessage(Player player) {
         return defaultMessage; //+ "You'll jump ahead " + calculateActualSquaresToJump(player) + " squares.";
     }
