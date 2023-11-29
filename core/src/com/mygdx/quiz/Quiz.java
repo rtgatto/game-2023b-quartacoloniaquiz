@@ -30,7 +30,7 @@ public class Quiz extends Event {
 
     public void isOptionCorrect(int selectedOptionIndex, Player player) {
         if (!(selectedOptionIndex-1 == correctOptionIndex)){
-            player.position.setPositions(player.position.getPrevius(), player.position.getPrevius());
+            player.position.setPositions(player.position.getPrevious(), player.position.getPrevious());
         }
     }
 

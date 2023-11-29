@@ -18,11 +18,11 @@ public class Position {
         return this.current;
     }
 
-    public int getPrevius() {
+    public int getPrevious() {
         return this.previous;
     }
 
     public void returnSquares(){
-        this.current = this.getPrevius();
+        this.current = this.getPrevious();
     }
 }
