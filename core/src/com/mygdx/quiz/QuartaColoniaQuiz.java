@@ -13,7 +13,6 @@ public class QuartaColoniaQuiz extends Game {
         batch = new SpriteBatch();
 
         ScreenManager.initialize(this);
-
         ScreenManager.setScreen(new GameScreen(this));
     }
 

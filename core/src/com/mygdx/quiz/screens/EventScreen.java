@@ -1,8 +1,6 @@
 package com.mygdx.quiz.screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -11,7 +9,9 @@ import com.badlogic.gdx.utils.Timer;
 import com.mygdx.quiz.*;
 import com.mygdx.quiz.Event;
 
-public class EventScreen implements Screen {
+import java.io.StringReader;
+
+public class EventScreen implements Screen{
     public Event event;
     public SpriteBatch batch;
     public BitmapFont font;
@@ -21,10 +21,8 @@ public class EventScreen implements Screen {
     public OrthographicCamera camera;
     private boolean waitingInput;
     private boolean waitingTime;
-    private Square square;
 
     public EventScreen(Player player, Board board, GameScreen gameScreen, Square square){
-        this.square = square;
         this.event = board.squares[player.position.getCurrent()].getEvent();;
         this.player = player;
         this.board = board;
@@ -39,27 +37,6 @@ public class EventScreen implements Screen {
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(new InputAdapter() {
-            public boolean touchDown(int key){
-                if (waitingInput){
-                    if (event instanceof Quiz){
-                        if (!((Quiz) event).isOptionCorrect(key)){
-                            player.position.returnSquares();
-                        }
-                    }
-                    waitingInput = false;
-                }
-                return true;
-            }
-        });
-
-        Timer.schedule(new Timer.Task() {
-            @Override
-            public void run() {
-                waitingTime = false;
-                waitingInput = true;
-            }
-        }, 4);
     }
 
     @Override
@@ -91,6 +68,7 @@ public class EventScreen implements Screen {
         finishEvent();
     }
     private void finishEvent(){
+        gameScreen.resume();
         ScreenManager.setScreen(gameScreen);
     }
 

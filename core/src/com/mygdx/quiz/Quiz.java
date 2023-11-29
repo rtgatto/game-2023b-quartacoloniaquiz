@@ -28,8 +28,10 @@ public class Quiz extends Event {
         return options;
     }
 
-    public boolean isOptionCorrect(int selectedOptionIndex) {
-        return selectedOptionIndex == correctOptionIndex;
+    public void isOptionCorrect(int selectedOptionIndex, Player player) {
+        if (!(selectedOptionIndex-1 == correctOptionIndex)){
+            player.position.setPositions(player.position.getPrevius(), player.position.getPrevius());
+        }
     }
 
     @Override

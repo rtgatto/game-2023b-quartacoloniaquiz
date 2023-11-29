@@ -1,8 +1,11 @@
 package com.mygdx.quiz.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.quiz.*;
 
@@ -15,6 +18,8 @@ public class GameScreen implements Screen {
     public Player player;
     public Dice dice;
     public GameStatus gameStatus;
+    public BitmapFont font;
+
 
 
     public GameScreen(QuartaColoniaQuiz game) {
@@ -23,9 +28,11 @@ public class GameScreen implements Screen {
         board = new Board();
         player = new Player();
         dice = new Dice();
-        gameStatus = GameStatus.EM_EXECUCAO;
+        gameStatus = GameStatus.RUNNIG;
+        font = new BitmapFont();
 
-        Gdx.graphics.setWindowedMode(1365, 195);
+
+        Gdx.graphics.setWindowedMode(1365, 700);
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1365, 195);
@@ -60,23 +67,76 @@ public class GameScreen implements Screen {
         playing();
     }
     public void playing(){
-
-        if (gameStatus == GameStatus.EM_EXECUCAO){
+        if (gameStatus == GameStatus.RUNNIG){
             int diceValue = dice.roll();
             player.move(diceValue);
+            gameStatus = GameStatus.PAUSED;
 
-            gameStatus = GameStatus.PAUSADO;
-        }
-        else {
             if (player.checkWin()){
                 Gdx.app.exit();
             }
-            ScreenManager.setScreen(new EventScreen(player, board, this, board.squares[player.position.getCurrent()]));
+        }
+        else {
+//            ScreenManager.setScreen(new EventScreen(player, board, this, board.squares[player.position.getCurrent()]));
+            Event event = board.squares[player.position.getCurrent()].event;
+            SpriteBatch spriteBatch = new SpriteBatch();
+            spriteBatch.begin();
+            spriteBatch.draw(event.getTexture(), 0, 0, event.getTexture().getWidth(), event.getTexture().getHeight());
 
-            gameStatus = GameStatus.EM_EXECUCAO;
+            if (event instanceof Quiz){
+                Quiz quiz = (Quiz) event;
+                int y = Gdx.graphics.getHeight() + 30;
+                for (String option : quiz.getOptions()){
+                    font.draw(spriteBatch, option, 10, y);
+                    y += 10;
+                }
+                int numberDown = getNumberDown();
+
+                quiz.isOptionCorrect(numberDown, player);
+            }
+            else {
+                font.draw(spriteBatch, event.getMessage(player), 10, Gdx.graphics.getHeight() + 30);
+                if (Gdx.input.isKeyPressed(Input.Keys.ENTER)){
+                    gameStatus = GameStatus.RUNNIG;
+                }
+            }
+            spriteBatch.end();
+            moveSquares();
         }
     }
 
+    private void moveSquares(){
+        for (int i = 0; i < rectangles.length; i++){
+            int pos = player.position.getCurrent()+i;
+
+            if (pos < 120){
+                rectangles[i].square = board.squares[pos];
+            }
+        }
+    }
+
+    private int getNumberDown(){
+        int numberDown;
+        if (Gdx.input.isKeyPressed(Input.Keys.NUM_1)){
+            numberDown = 1;
+        }
+        else if (Gdx.input.isKeyPressed(Input.Keys.NUM_2)){
+            numberDown = 2;
+        }
+        else if (Gdx.input.isKeyPressed(Input.Keys.NUM_3)){
+            numberDown = 3;
+        }
+        else if (Gdx.input.isKeyPressed(Input.Keys.NUM_4)){
+            numberDown = 4;
+        }
+        else if (Gdx.input.isKeyPressed(Input.Keys.NUM_5)){
+            numberDown = 5;
+        }
+        else {
+            numberDown = 0;
+        }
+        return numberDown;
+    }
     @Override
     public void resize(int width, int height) {
 
@@ -84,12 +144,10 @@ public class GameScreen implements Screen {
 
     @Override
     public void pause() {
-
     }
 
     @Override
     public void resume() {
-
     }
 
     @Override
@@ -106,5 +164,6 @@ public class GameScreen implements Screen {
         for (int i = 0; i < 7; i++){
             rectangles[i].texture.dispose();
         }
+        font.dispose();
     }
 }
