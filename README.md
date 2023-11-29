@@ -18,3 +18,4 @@ Ganha quando o jogador chegar ao final do tabuleiro.
 <https://libgdx.com/dev/>
 <https://docs.gradle.org/>
 <https://happycoding.io/tutorials/libgdx/game-screens>
+<https://libgdx.com/wiki>
