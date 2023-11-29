@@ -1,12 +1,13 @@
 package com.mygdx.quiz;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 public class PlusEvent extends Event {
 
     public PlusEvent() {
         super(2); // Assuming 2 represents a Plus Event
-        this.texture = null; // Add plus texture image
+        this.texture = new Texture(Gdx.files.internal("img/quarta_colonia.png")); // Add plus texture image
         this.defaultMessage = "You got a Plus Event! ";
         this.squaresToJump = new Dice().roll();
     }
@@ -21,7 +22,7 @@ public class PlusEvent extends Event {
 
     @Override
     public String getMessage(Player player) {
-        return defaultMessage + "You'll jump ahead " + calculateActualSquaresToJump(player) + " squares.";
+        return defaultMessage; //+ "You'll jump ahead " + calculateActualSquaresToJump(player) + " squares.";
     }
 
     @Override

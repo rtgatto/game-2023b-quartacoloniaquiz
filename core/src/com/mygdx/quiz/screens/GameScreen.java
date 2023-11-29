@@ -63,13 +63,15 @@ public class GameScreen implements Screen {
 
         if (gameStatus == GameStatus.EM_EXECUCAO){
             int diceValue = dice.roll();
-            System.out.println(diceValue);
             player.move(diceValue);
 
             gameStatus = GameStatus.PAUSADO;
         }
         else {
-            ScreenManager.setScreen(new EventScreen(player, board, this));
+            if (player.checkWin()){
+                Gdx.app.exit();
+            }
+            ScreenManager.setScreen(new EventScreen(player, board, this, board.squares[player.position.getCurrent()]));
 
             gameStatus = GameStatus.EM_EXECUCAO;
         }
@@ -98,5 +100,11 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         game.batch.dispose();
+        for (int i = 0; i < 120; i++){
+            board.squares[i].event.texture.dispose();
+        }
+        for (int i = 0; i < 7; i++){
+            rectangles[i].texture.dispose();
+        }
     }
 }

@@ -1,12 +1,13 @@
 package com.mygdx.quiz;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 
 public class MinusEvent extends Event {
 
     public MinusEvent() {
         super(3); // Assuming 3 represents a Minus Event
-        this.texture = null; // Add minus texture image
+        this.texture = new Texture(Gdx.files.internal("img/bagualosaurus.png")); // Add minus texture image
         this.defaultMessage = "Oh no! You got a Minus Event. ";
         this.squaresToJump = (int) (Math.random() * 10) + 1; // Random number from 1 to 10
     }
@@ -21,7 +22,7 @@ public class MinusEvent extends Event {
 
     @Override
     public String getMessage(Player player) {
-        return defaultMessage + "You'll jump back " + calculateActualSquaresToJump(player) + " squares.";
+        return defaultMessage;// + "You'll jump back " + calculateActualSquaresToJump(player) + " squares.";
     }
 
     @Override

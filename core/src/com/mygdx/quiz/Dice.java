@@ -3,12 +3,11 @@ package com.mygdx.quiz;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Dice {
-    private int value;
+    public int value;
     private Texture diceTexture;
 
     public Dice() {
-        this.diceTexture = diceTexture;
-        roll();
+        value = roll();
     }
 
     public int roll() {

@@ -7,11 +7,9 @@ import java.util.ArrayList;
 
 public class Board {
     public Square[] squares;
-    private Texture boardTexture;
 
     public Board() {
         squares = new Square[120];
-        // this.boardTexture = boardTexture;
 
         initializeBoard();
     }

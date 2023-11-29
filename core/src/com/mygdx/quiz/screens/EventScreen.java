@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Timer;
@@ -16,17 +17,24 @@ public class EventScreen implements Screen {
     public BitmapFont font;
     public Player player;
     public Board board;
-    public Screen screen;
-    private boolean waitingInput = false;
-    private boolean waitingTime = true;
+    public GameScreen gameScreen;
+    public OrthographicCamera camera;
+    private boolean waitingInput;
+    private boolean waitingTime;
+    private Square square;
 
-    public EventScreen(Player player, Board board, Screen screen){
+    public EventScreen(Player player, Board board, GameScreen gameScreen, Square square){
+        this.square = square;
         this.event = board.squares[player.position.getCurrent()].getEvent();;
         this.player = player;
         this.board = board;
-        this.screen = screen;
+        this.gameScreen = gameScreen;
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, event.getTexture().getWidth(), event.getTexture().getWidth());
         batch = new SpriteBatch();
         font = new BitmapFont();
+        waitingInput = false;
+        waitingTime = true;
     }
 
     @Override
@@ -59,37 +67,41 @@ public class EventScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        camera.update();
+        batch.setProjectionMatrix(camera.combined);
+
         batch.begin();
-        batch.draw(event.texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.draw(event.getTexture(), 0, 0, event.getTexture().getWidth(), event.getTexture().getHeight());
 
         if (event instanceof Quiz){
             Quiz quiz = (Quiz) event;
-            int y = Gdx.graphics.getHeight() - 10;
+            int y = Gdx.graphics.getHeight() + 10;
             for (String option : quiz.getOptions()){
                 font.draw(batch, option, 10, y);
-                y -= 10;
+                y += 10;
             }
         }
         else {
-            font.draw(batch, event.getMessage(player), 10, Gdx.graphics.getHeight() - 10);
+            font.draw(batch, event.getMessage(player), 10, Gdx.graphics.getHeight() + 10);
         }
         batch.end();
 
-        if (event instanceof Quiz){
-            if (waitingInput){
-//                fazer a movimentação das squares nos rectangles
-            }
-        }
-        else {
-            if (waitingTime){
-//                fazer a movimentação das squares nos rectangles
-            }
-        }
+        moveSquares();
 
         finishEvent();
     }
     private void finishEvent(){
-        ScreenManager.setScreen(screen);
+        ScreenManager.setScreen(gameScreen);
+    }
+
+    private void moveSquares(){
+        for (int i = 0; i < gameScreen.rectangles.length; i++){
+            int pos = player.position.getCurrent()+i;
+
+            if (pos < 120){
+                gameScreen.rectangles[i].square = board.squares[pos];
+            }
+        }
     }
     @Override
     public void resize(int width, int height) {
@@ -113,6 +125,8 @@ public class EventScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        batch.dispose();
+        font.dispose();
+        event.texture.dispose();
     }
 }
