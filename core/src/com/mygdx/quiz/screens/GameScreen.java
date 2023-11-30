@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.quiz.*;
 
+import java.util.Scanner;
+
 public class GameScreen implements Screen {
 
     QuartaColoniaQuiz game;
@@ -85,18 +87,32 @@ public class GameScreen implements Screen {
 
             if (event instanceof Quiz){
                 Quiz quiz = (Quiz) event;
-                int y = Gdx.graphics.getHeight() + 30;
-//                font.draw(spriteBatch, quiz.getQuestion(), 10, 10);
                 System.out.print(quiz.getQuestion());
+
+//                int y = Gdx.graphics.getHeight() + 30;
+//                font.draw(spriteBatch, quiz.getQuestion(), 10, 10);
 
                 for (String option : quiz.getOptions()){
 //                    font.draw(spriteBatch, option, 10, y);
+//                    y += 10;
                     System.out.print(option);
-                    y += 10;
                 }
-                int numberDown = getNumberDown();
+//                int numberDown = getNumberDown();
 
-                quiz.isOptionCorrect(numberDown, player);
+                Scanner scanner = new Scanner(System.in);
+                int userInput;
+                do {
+                    System.out.println("Enter a number (1-5): ");
+                    while (!scanner.hasNextInt()) {
+                        System.out.println("Invalid input. Please enter a number (1-5): ");
+                        scanner.next();
+                    }
+                    userInput = scanner.nextInt();
+                } while (userInput < 1 || userInput > 5);
+
+                scanner.close();
+
+                quiz.isOptionCorrect(userInput, player);
             }
             else {
                 System.out.print(event.getMessage(player));
