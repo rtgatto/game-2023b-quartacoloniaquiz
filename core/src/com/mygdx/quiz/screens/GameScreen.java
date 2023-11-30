@@ -106,7 +106,7 @@ public class GameScreen implements Screen {
                     userInput = scanner.nextInt();
                 } while (userInput < 1 || userInput > 5);
 
-                System.out.print(userInput + "============================================");
+                System.out.println(userInput + "============================================");
                 scanner.close();
 
                 quiz.isOptionCorrect(userInput, player);

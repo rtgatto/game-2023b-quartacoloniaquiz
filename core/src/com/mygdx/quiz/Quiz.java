@@ -29,12 +29,11 @@ public class Quiz extends Event {
     }
 
     public void isOptionCorrect(int selectedOptionIndex, Player player) {
-        if (!(selectedOptionIndex-1 == correctOptionIndex)){
-            System.out.print("Resposta errada\n");
+        if (!(selectedOptionIndex - 1 == correctOptionIndex)) {
+            System.out.print("Wrong answer\n");
             player.position.setPositions(player.position.getPrevious(), player.position.getPrevious());
-        }
-        else {
-            System.out.print("Resposta correta\n");
+        } else {
+            System.out.print("Correct answer\n");
         }
     }
 
