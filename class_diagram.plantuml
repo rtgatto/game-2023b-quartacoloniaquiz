@@ -1,36 +1,116 @@
-@startuml QuartaColoniaQuiz
+@startuml
 
-class Dice
-{
-    + value: int
-
+class QuartaColoniaQuiz {
+    -batch: SpriteBatch
 }
-class Player
-class Board
-class Square
-class EventScreen
-class MyRectangle
-class MinusEvent
-class Position
-class QuizReader
-class StayHereEvent
 
-Board o-R- Square
-Board -L- Player
+class GameScreen {
+    -game: QuartaColoniaQuiz
+    -camera: OrthographicCamera
+    -rectangles: MyRectangle[]
+    -board: Board
+    -player: Player
+    -dice: Dice
+    -gameStatus: GameStatus
+    -font: BitmapFont
+}
 
-Player -- Dice
+class EventScreen {
+    -event: Event
+    -batch: SpriteBatch
+    -font: BitmapFont
+    -player: Player
+    -board: Board
+    -gameScreen: GameScreen
+    -camera: OrthographicCamera
+    -waitingInput: boolean
+    -waitingTime: boolean
+}
 
-Square o-- Event
+enum GameStatus {
+    RUNNING
+    PAUSED
+}
 
-PlusEvent --|> Event
-MinusEvent --|> Event
-Quiz --|> Event
+class MyRectangle {
+    -square: Square
+    -texture: Texture
+}
+
+class ScreenManager {
+    -game: Game
+}
+
+class Board {
+    -squares: Square[]
+}
+
+class Dice {
+    -value: int
+}
+
+abstract class Event {
+    -type: int
+    -defaultMessage: String
+    -squaresToJump: int
+    -texture: Texture
+}
+
+class MinusEvent {
+}
+
+class Player {
+    -position: Position
+    -texture: Texture
+}
+
+class PlusEvent {
+}
+
+class Position {
+    -current: int
+    -previous: int
+}
+
+class Quiz {
+    -question: String
+    -options: List<String>
+    -correctOptionIndex: int
+}
+
+class QuizReader {
+    +readQuizzesFromCSV(): ArrayList<Quiz>
+}
+
+class Square {
+    -number: int
+    -event: Event
+    -texture: Texture
+}
+
+class StayHereEvent {
+}
+
+QuartaColoniaQuiz -- ScreenManager
+QuartaColoniaQuiz -- GameScreen
+
+GameScreen -- MyRectangle
+GameScreen -- GameStatus
+GameScreen -- ScreenManager
+GameScreen -- Board
+GameScreen -- Player
+
+Player -- Position
+
+Board -- Dice
+Board -- Square
+Square -- Event
+
 StayHereEvent --|> Event
+MinusEvent --|> Event
+PlusEvent --|> Event
+Quiz --|> Event
 
-Dice -- Board
-
-
-
-
+Quiz -- QuizReader
 
 @enduml
