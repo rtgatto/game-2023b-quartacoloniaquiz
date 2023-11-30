@@ -102,9 +102,9 @@ public class GameScreen implements Screen {
                 Scanner scanner = new Scanner(System.in);
                 int userInput;
                 do {
-                    System.out.println("Enter a number (1-5): ");
+                    System.out.println("\nEnter a number (1-5): ");
                     while (!scanner.hasNextInt()) {
-                        System.out.println("Invalid input. Please enter a number (1-5): ");
+                        System.out.println("\nInvalid input. Please enter a number (1-5): ");
                         scanner.next();
                     }
                     userInput = scanner.nextInt();
