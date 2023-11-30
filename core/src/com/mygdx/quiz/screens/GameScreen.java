@@ -11,6 +11,8 @@ import com.mygdx.quiz.*;
 
 import java.util.Scanner;
 
+import org.w3c.dom.events.Event;
+
 public class GameScreen implements Screen {
 
     QuartaColoniaQuiz game;
@@ -108,8 +110,15 @@ public class GameScreen implements Screen {
                 System.out.println(userInput + "============================================");
                 scanner.close();
 
-                quiz.isOptionCorrect(userInput, player);
-                gameStatus = GameStatus.RUNNING;
+                if (quiz.isOptionCorrect(userInput, player)) {
+                    System.out.println("Correct answer!");
+                    gameStatus = GameStatus.RUNNING; // Set game status back to RUNNING
+                } else {
+                    System.out.println("Wrong answer");
+                    // Optionally, you can keep the line below if you need it for some reason
+                    // player.position.setPositions(player.position.getPrevious(),
+                    // player.position.getPrevious());
+                }
             } else {
                 System.out.print(event.getMessage(player));
                 if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
