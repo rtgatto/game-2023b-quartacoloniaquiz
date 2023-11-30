@@ -1,9 +1,29 @@
 @startuml QuartaColoniaQuiz
 
 class Dice
+{
+    Value
+    roll()
+    getValue()
+}
 class Player
+{
+    texture
+    move()
+    getPlayerTexture()
+    
+}
 class Board
 class Square
+class StayHereEvent
+class QuizReader
+class QuartaColoniaQuiz
+class Position
+class ScreenManager
+class MyRectangle
+class GamaStatus
+class GameScreen
+class EventScreen
 
 Board o-R- Square
 Board -L- Player
@@ -18,7 +38,7 @@ Quiz --|> Event
 
 Dice -- Board
 
-
+Player -- Position
 
 
 
