@@ -102,11 +102,7 @@ public class GameScreen implements Screen {
                 Scanner scanner = new Scanner(System.in);
                 int userInput;
                 do {
-                    System.out.println("\nEnter a number (1-5): ");
-                    while (!scanner.hasNextInt()) {
-                        System.out.println("\nInvalid input. Please enter a number (1-5): ");
-                        scanner.next();
-                    }
+                    System.out.println("\nDigite um número (1-5): ");
                     userInput = scanner.nextInt();
                 } while (userInput < 1 || userInput > 5);
 
@@ -135,28 +131,6 @@ public class GameScreen implements Screen {
         }
     }
 
-    private int getNumberDown(){
-        int numberDown;
-        if (Gdx.input.isKeyPressed(Input.Keys.NUM_1)){
-            numberDown = 1;
-        }
-        else if (Gdx.input.isKeyPressed(Input.Keys.NUM_2)){
-            numberDown = 2;
-        }
-        else if (Gdx.input.isKeyPressed(Input.Keys.NUM_3)){
-            numberDown = 3;
-        }
-        else if (Gdx.input.isKeyPressed(Input.Keys.NUM_4)){
-            numberDown = 4;
-        }
-        else if (Gdx.input.isKeyPressed(Input.Keys.NUM_5)){
-            numberDown = 5;
-        }
-        else {
-            numberDown = 0;
-        }
-        return numberDown;
-    }
     @Override
     public void resize(int width, int height) {
 
