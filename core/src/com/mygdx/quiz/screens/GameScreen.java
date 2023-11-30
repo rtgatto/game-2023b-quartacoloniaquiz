@@ -29,7 +29,7 @@ public class GameScreen implements Screen {
         board = new Board();
         player = new Player();
         dice = new Dice();
-        gameStatus = GameStatus.RUNNIG;
+        gameStatus = GameStatus.RUNNING;
         font = new BitmapFont();
 
 
@@ -68,7 +68,7 @@ public class GameScreen implements Screen {
         playing();
     }
     public void playing(){
-        if (gameStatus == GameStatus.RUNNIG){
+        if (gameStatus == GameStatus.RUNNING){
             int diceValue = dice.roll();
             player.move(diceValue);
             gameStatus = GameStatus.PAUSED;
@@ -107,13 +107,20 @@ public class GameScreen implements Screen {
                 } while (userInput < 1 || userInput > 5);
 
                 scanner.close();
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++=");
 
-                quiz.isOptionCorrect(userInput, player);
+                if (quiz.isOptionCorrect1(userInput)){
+                    gameStatus = GameStatus.RUNNING;
+                }
+
+
+//                if (Gdx.input.isKeyPressed(Input.Keys.ENTER)){
+//                }
             }
             else {
                 System.out.print(event.getMessage(player));
                 if (Gdx.input.isKeyPressed(Input.Keys.ENTER)){
-                    gameStatus = GameStatus.RUNNIG;
+                    gameStatus = GameStatus.RUNNING;
                 }
             }
             spriteBatch.end();

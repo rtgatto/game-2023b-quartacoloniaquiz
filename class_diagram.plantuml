@@ -1,9 +1,19 @@
 @startuml QuartaColoniaQuiz
 
 class Dice
+{
+    + value: int
+
+}
 class Player
 class Board
 class Square
+class EventScreen
+class MyRectangle
+class MinusEvent
+class Position
+class QuizReader
+class StayHereEvent
 
 Board o-R- Square
 Board -L- Player
@@ -15,6 +25,7 @@ Square o-- Event
 PlusEvent --|> Event
 MinusEvent --|> Event
 Quiz --|> Event
+StayHereEvent --|> Event
 
 Dice -- Board
 

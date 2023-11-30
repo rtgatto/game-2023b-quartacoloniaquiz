@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Dice {
     public int value;
-    private Texture diceTexture;
 
     public Dice() {
         value = roll();
@@ -18,7 +17,4 @@ public class Dice {
         return value;
     }
 
-    public Texture getDiceTexture() {
-        return diceTexture;
-    }
 }
