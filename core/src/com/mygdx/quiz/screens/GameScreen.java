@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.quiz.*;
-
 import java.util.Scanner;
 
 public class GameScreen implements Screen {
@@ -164,6 +163,11 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
+        sounds.diceSound.dispose();
+        sounds.eventSound.dispose();
+        sounds.moveSound.dispose();
+        sounds.rightSound.dispose();
+        sounds.wrongSound.dispose();
         game.batch.dispose();
         for (int i = 0; i < 120; i++) {
             board.squares[i].event.texture.dispose();
