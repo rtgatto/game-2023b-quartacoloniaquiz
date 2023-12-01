@@ -4,11 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 
 public class Sounds {
-    private Sound diceSound;
-    private Sound eventSound;
-    private Sound moveSound;
-    private Sound rightSound;
-    private Sound wrongSound;
+    public Sound diceSound;
+    public Sound eventSound;
+    public Sound moveSound;
+    public Sound rightSound;
+    public Sound wrongSound;
 
     public Sounds() {
         this.diceSound = Gdx.audio.newSound(Gdx.files.internal("sounds/dice.mp3"));

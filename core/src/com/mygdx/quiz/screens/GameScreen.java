@@ -70,8 +70,10 @@ public class GameScreen implements Screen {
 
     public void playing() {
         if (gameStatus == GameStatus.RUNNING) {
+            sounds.diceSound.play(1.0f);
             int diceValue = dice.roll();
             player.move(diceValue);
+            sounds.moveSound.play(1.0f);
             gameStatus = GameStatus.PAUSED;
 
             if (player.checkWin()) {
@@ -87,6 +89,7 @@ public class GameScreen implements Screen {
             spriteBatch.draw(event.getTexture(), 0, 0, event.getTexture().getWidth(), event.getTexture().getHeight());
 
             if (event instanceof Quiz) {
+                sounds.eventSound.play(1.0f);
                 Quiz quiz = (Quiz) event;
                 System.out.print(quiz.getQuestion());
 
@@ -111,6 +114,10 @@ public class GameScreen implements Screen {
                 System.out.println("++++++++++++++++++++++++++++++++++++++++++=");
 
                 if (quiz.isOptionCorrect1(userInput)) {
+                    sounds.rightSound.play(1.0f);
+                    gameStatus = GameStatus.RUNNING;
+                } else {
+                    sounds.wrongSound.play(1.0f);
                     gameStatus = GameStatus.RUNNING;
                 }
 
