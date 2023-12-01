@@ -11,8 +11,6 @@ import com.mygdx.quiz.*;
 
 import java.util.Scanner;
 
-import org.w3c.dom.events.Event;
-
 public class GameScreen implements Screen {
 
     QuartaColoniaQuiz game;
@@ -24,6 +22,7 @@ public class GameScreen implements Screen {
     public GameStatus gameStatus;
     public BitmapFont font;
 
+
     public GameScreen(QuartaColoniaQuiz game) {
         this.game = game;
 
@@ -33,6 +32,7 @@ public class GameScreen implements Screen {
         gameStatus = GameStatus.RUNNING;
         font = new BitmapFont();
 
+
         Gdx.graphics.setWindowedMode(1365, 700);
 
         camera = new OrthographicCamera();
@@ -41,7 +41,7 @@ public class GameScreen implements Screen {
         rectangles = new MyRectangle[7];
 
         int x = 0;
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 7; i++){
             rectangles[i] = new MyRectangle(board.squares[i], x);
             x += 195;
         }
@@ -53,52 +53,51 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(245, 255, 250, 1);
+        ScreenUtils.clear(245,255,250, 1);
 
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        for (MyRectangle rectangle : rectangles) {
+        for (MyRectangle rectangle : rectangles){
             game.batch.draw(rectangle.texture, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         }
-        game.batch.draw(player.getPlayerTexture(), player.position.getCurrent() * 195, 0, 195, 195);
+        game.batch.draw(player.getPlayerTexture(), player.position.getCurrent()*195, 0, 195, 195);
         game.batch.end();
 
         playing();
     }
-
-    public void playing() {
-        if (gameStatus == GameStatus.RUNNING) {
+    public void playing(){
+        if (gameStatus == GameStatus.RUNNING){
             int diceValue = dice.roll();
             player.move(diceValue);
             gameStatus = GameStatus.PAUSED;
 
-            if (player.checkWin()) {
+            if (player.checkWin()){
                 Gdx.app.exit();
             }
-        } else {
-            // ScreenManager.setScreen(new EventScreen(player, board, this,
-            // board.squares[player.position.getCurrent()]));
+        }
+        else {
+//            ScreenManager.setScreen(new EventScreen(player, board, this, board.squares[player.position.getCurrent()]));
             Event event = board.squares[player.position.getCurrent()].event;
 
             SpriteBatch spriteBatch = new SpriteBatch();
             spriteBatch.begin();
             spriteBatch.draw(event.getTexture(), 0, 0, event.getTexture().getWidth(), event.getTexture().getHeight());
 
-            if (event instanceof Quiz) {
+            if (event instanceof Quiz){
                 Quiz quiz = (Quiz) event;
                 System.out.print(quiz.getQuestion());
 
-                // int y = Gdx.graphics.getHeight() + 30;
-                // font.draw(spriteBatch, quiz.getQuestion(), 10, 10);
+//                int y = Gdx.graphics.getHeight() + 30;
+//                font.draw(spriteBatch, quiz.getQuestion(), 10, 10);
 
-                for (String option : quiz.getOptions()) {
-                    // font.draw(spriteBatch, option, 10, y);
-                    // y += 10;
+                for (String option : quiz.getOptions()){
+//                    font.draw(spriteBatch, option, 10, y);
+//                    y += 10;
                     System.out.print(option);
                 }
-                // int numberDown = getNumberDown();
+//                int numberDown = getNumberDown();
 
                 Scanner scanner = new Scanner(System.in);
                 int userInput;
@@ -107,21 +106,20 @@ public class GameScreen implements Screen {
                     userInput = scanner.nextInt();
                 } while (userInput < 1 || userInput > 5);
 
-                System.out.println(userInput + "============================================");
                 scanner.close();
+                System.out.println("++++++++++++++++++++++++++++++++++++++++++=");
 
-                if (quiz.isOptionCorrect(userInput, player)) {
-                    System.out.println("Correct answer!");
-                    gameStatus = GameStatus.RUNNING; // Set game status back to RUNNING
-                } else {
-                    System.out.println("Wrong answer");
-                    // Optionally, you can keep the line below if you need it for some reason
-                    // player.position.setPositions(player.position.getPrevious(),
-                    // player.position.getPrevious());
+                if (quiz.isOptionCorrect1(userInput)){
+                    gameStatus = GameStatus.RUNNING;
                 }
-            } else {
+
+
+//                if (Gdx.input.isKeyPressed(Input.Keys.ENTER)){
+//                }
+            }
+            else {
                 System.out.print(event.getMessage(player));
-                if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
+                if (Gdx.input.isKeyPressed(Input.Keys.ENTER)){
                     gameStatus = GameStatus.RUNNING;
                 }
             }
@@ -130,11 +128,11 @@ public class GameScreen implements Screen {
         }
     }
 
-    private void moveSquares() {
-        for (int i = 0; i < rectangles.length; i++) {
-            int pos = player.position.getCurrent() + i;
+    private void moveSquares(){
+        for (int i = 0; i < rectangles.length; i++){
+            int pos = player.position.getCurrent()+i;
 
-            if (pos < 120) {
+            if (pos < 120){
                 rectangles[i].square = board.squares[pos];
             }
         }
@@ -161,10 +159,10 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
         game.batch.dispose();
-        for (int i = 0; i < 120; i++) {
+        for (int i = 0; i < 120; i++){
             board.squares[i].event.texture.dispose();
         }
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 7; i++){
             rectangles[i].texture.dispose();
         }
         font.dispose();

@@ -1,45 +1,116 @@
-@startuml QuartaColoniaQuiz
+@startuml
 
-class Dice
-{
-    Value
-    roll()
-    getValue()
+class QuartaColoniaQuiz {
+    -batch: SpriteBatch
 }
-class Player
-{
-    texture
-    move()
-    getPlayerTexture()
-    
+
+class GameScreen {
+    -game: QuartaColoniaQuiz
+    -camera: OrthographicCamera
+    -rectangles: MyRectangle[]
+    -board: Board
+    -player: Player
+    -dice: Dice
+    -gameStatus: GameStatus
+    -font: BitmapFont
 }
-class Board
-class Square
-class StayHereEvent
-class QuizReader
-class QuartaColoniaQuiz
-class Position
-class ScreenManager
-class MyRectangle
-class GamaStatus
-class GameScreen
-class EventScreen
 
-Board o-R- Square
-Board -L- Player
+class EventScreen {
+    -event: Event
+    -batch: SpriteBatch
+    -font: BitmapFont
+    -player: Player
+    -board: Board
+    -gameScreen: GameScreen
+    -camera: OrthographicCamera
+    -waitingInput: boolean
+    -waitingTime: boolean
+}
 
-Player -- Dice
+enum GameStatus {
+    RUNNING
+    PAUSED
+}
 
-Square o-- Event
+class MyRectangle {
+    -square: Square
+    -texture: Texture
+}
 
-PlusEvent --|> Event
-MinusEvent --|> Event
-Quiz --|> Event
+class ScreenManager {
+    -game: Game
+}
 
-Dice -- Board
+class Board {
+    -squares: Square[]
+}
+
+class Dice {
+    -value: int
+}
+
+abstract class Event {
+    -type: int
+    -defaultMessage: String
+    -squaresToJump: int
+    -texture: Texture
+}
+
+class MinusEvent {
+}
+
+class Player {
+    -position: Position
+    -texture: Texture
+}
+
+class PlusEvent {
+}
+
+class Position {
+    -current: int
+    -previous: int
+}
+
+class Quiz {
+    -question: String
+    -options: List<String>
+    -correctOptionIndex: int
+}
+
+class QuizReader {
+    +readQuizzesFromCSV(): ArrayList<Quiz>
+}
+
+class Square {
+    -number: int
+    -event: Event
+    -texture: Texture
+}
+
+class StayHereEvent {
+}
+
+QuartaColoniaQuiz -- ScreenManager
+QuartaColoniaQuiz -- GameScreen
+
+GameScreen -- MyRectangle
+GameScreen -- GameStatus
+GameScreen -- ScreenManager
+GameScreen -- Board
+GameScreen -- Player
 
 Player -- Position
 
+Board -- Dice
+Board -- Square
+Square -- Event
 
+StayHereEvent --|> Event
+MinusEvent --|> Event
+PlusEvent --|> Event
+Quiz --|> Event
+
+Quiz -- QuizReader
 
 @enduml

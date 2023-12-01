@@ -36,7 +36,10 @@ public class Quiz extends Event {
             System.out.print("Correct answer\n");
         }
     }
+    public boolean isOptionCorrect1(int selectedOptionIndex){
+        return selectedOptionIndex-1 == correctOptionIndex;
 
+    }
     @Override
     public String getMessage(Player player) {
         return null;
