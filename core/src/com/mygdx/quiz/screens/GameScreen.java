@@ -1,14 +1,11 @@
 package com.mygdx.quiz.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.quiz.*;
-import java.util.Scanner;
 
 public class GameScreen implements Screen {
 
@@ -32,10 +29,8 @@ public class GameScreen implements Screen {
         font = new BitmapFont();
         sounds = new Sounds();
 
-        Gdx.graphics.setWindowedMode(1365, 700);
-
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 1365, 195);
+        camera.setToOrtho(false, 1365, 700); // 195
 
         rectangles = new MyRectangle[7];
 
@@ -52,7 +47,8 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(245, 255, 250, 1);
+
+        ScreenUtils.clear(245, 255, 0, 1);
 
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
@@ -61,75 +57,22 @@ public class GameScreen implements Screen {
         for (MyRectangle rectangle : rectangles) {
             game.batch.draw(rectangle.texture, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         }
-        game.batch.draw(player.getPlayerTexture(), player.position.getCurrent() * 195, 0, 195, 195);
+        game.batch.draw(player.getPlayerTexture(), (player.position.getCurrent() % 7) * 195, 505, 195, 195);
         game.batch.end();
-
         playing();
     }
 
     public void playing() {
-        if (gameStatus == GameStatus.RUNNING) {
-            sounds.diceSound.play(1.0f);
-            int diceValue = dice.roll();
-            player.move(diceValue);
-            sounds.moveSound.play(1.0f);
-            gameStatus = GameStatus.PAUSED;
+        sounds.diceSound.play(1.0f);
+        int diceValue = dice.roll();
+        player.move(diceValue);
+        sounds.moveSound.play(1.0f);
 
-            if (player.checkWin()) {
-                Gdx.app.exit();
-            }
-        } else {
-            // ScreenManager.setScreen(new EventScreen(player, board, this,
-            // board.squares[player.position.getCurrent()]));
-            Event event = board.squares[player.position.getCurrent()].event;
-
-            SpriteBatch spriteBatch = new SpriteBatch();
-            spriteBatch.begin();
-            spriteBatch.draw(event.getTexture(), 0, 0, event.getTexture().getWidth(), event.getTexture().getHeight());
-
-            if (event instanceof Quiz) {
-                sounds.eventSound.play(1.0f);
-                Quiz quiz = (Quiz) event;
-                System.out.print(quiz.getQuestion());
-
-                // int y = Gdx.graphics.getHeight() + 30;
-                // font.draw(spriteBatch, quiz.getQuestion(), 10, 10);
-
-                for (String option : quiz.getOptions()) {
-                    // font.draw(spriteBatch, option, 10, y);
-                    // y += 10;
-                    System.out.print(option);
-                }
-                // int numberDown = getNumberDown();
-
-                Scanner scanner = new Scanner(System.in);
-                int userInput;
-                do {
-                    System.out.println("\nDigite um número (1-5): ");
-                    userInput = scanner.nextInt();
-                } while (userInput < 1 || userInput > 5);
-
-                scanner.close();
-                System.out.println("++++++++++++++++++++++++++++++++++++++++++=");
-
-                if (quiz.isOptionCorrect1(userInput)) {
-                    sounds.rightSound.play(1.0f);
-                    gameStatus = GameStatus.RUNNING;
-                } else {
-                    sounds.wrongSound.play(1.0f);
-                    gameStatus = GameStatus.RUNNING;
-                }
-
-                // if (Gdx.input.isKeyPressed(Input.Keys.ENTER)){
-                // }
-            } else {
-                System.out.print(event.getMessage(player));
-                if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
-                    gameStatus = GameStatus.RUNNING;
-                }
-            }
-            spriteBatch.end();
-            moveSquares();
+        if (player.checkWin()) {
+            Gdx.app.exit();
+        }
+        else {
+            ScreenManager.setScreen(new EventScreen(player, board, this));
         }
     }
 
@@ -169,9 +112,6 @@ public class GameScreen implements Screen {
         sounds.rightSound.dispose();
         sounds.wrongSound.dispose();
         game.batch.dispose();
-        for (int i = 0; i < 120; i++) {
-            board.squares[i].event.texture.dispose();
-        }
         for (int i = 0; i < 7; i++) {
             rectangles[i].texture.dispose();
         }

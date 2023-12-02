@@ -13,7 +13,7 @@ public class MyRectangle extends Rectangle {
         this.texture = square.getTexture();
 
         x = _x;
-        y = 0;
+        y = 505;
         width = 195;
         height = 195;
     }
