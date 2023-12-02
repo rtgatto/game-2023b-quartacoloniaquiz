@@ -65,7 +65,7 @@ public class GameScreen implements Screen {
     public void playing() {
         sounds.diceSound.play(1.0f);
         int diceValue = dice.roll();
-        player.move(diceValue);
+        player.move(diceValue+player.position.getCurrent());
         sounds.moveSound.play(1.0f);
 
         if (player.checkWin()) {
