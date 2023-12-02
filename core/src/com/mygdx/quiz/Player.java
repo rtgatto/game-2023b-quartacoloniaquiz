@@ -13,8 +13,9 @@ public class Player {
         this.texture = new Texture(Gdx.files.internal("img/player.png"));
     }
 
-    public void move(int spaces) {
-        position.setPositions(position.getCurrent(), position.getCurrent() + spaces);
+    public void move(int newPosition) {
+        // actual position becomes previous and position to move becomes actual position
+        position.setPositions(position.getCurrent(), newPosition);
     }
 
     public Texture getPlayerTexture() {

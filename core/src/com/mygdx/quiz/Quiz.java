@@ -45,10 +45,10 @@ public class Quiz extends Event {
         return null;
     }
 
-    @Override
-    protected int calculateActualSquaresToJump(Player player) {
-        return 0;
-    }
+ //   @Override
+  //  protected int calculateActualSquaresToJump(Player player) {
+  //      return 0;
+   // }
 
     @Override
     public void applyEvent(Player player) {

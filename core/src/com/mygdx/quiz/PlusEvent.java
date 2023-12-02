@@ -20,22 +20,24 @@ public class PlusEvent extends Event {
         return squaresToJump;
     }
 
-//    @Override
+    // @Override
     public String getMessage(Player player) {
-        return defaultMessage; //+ "You'll jump ahead " + calculateActualSquaresToJump(player) + " squares.";
+        return defaultMessage; // + "You'll jump ahead " + calculateActualSquaresToJump(player) + " squares.";
     }
 
-    @Override
-    protected int calculateActualSquaresToJump(Player player) {
-        // Calculate actual squares to jump after boundary checks
-        return Math.min(squaresToJump, 120 - player.position.getCurrent());
-    }
+    // @Override
+    // protected int calculateActualSquaresToJump(Player player) {
+    // Calculate actual squares to jump after boundary checks
+    // return Math.min(squaresToJump, 120 - player.position.getCurrent());
+    // }
 
     @Override
     public void applyEvent(Player player) {
         int newPosition = player.position.getCurrent() + getSquaresToJump();
         // Ensure the player doesn't jump out of boundaries
-
-        player.move(Math.min(newPosition, 119) - player.position.getCurrent()); // functional programming in Java way :)
+        if (newPosition > 119) {
+            newPosition = 119;
+        }
+        player.move(newPosition);
     }
 }
