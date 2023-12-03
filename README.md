@@ -23,4 +23,5 @@ Ganha quando o jogador chegar ao final do tabuleiro.
 <https://opengameart.org/content/boardgame-pack>
 <https://opengameart.org/content/54-casino-sound-effects-cards-dice-chips>
 <https://github.com/lichess-org/lila/tree/d1b042efd8bb90258177f5c5822112316221e9cc/public/sound>
-https://javadoc.io/static/com.badlogicgames.gdx/gdx/1.12.1/com/badlogic/gdx/Application.html 
+https://javadoc.io/static/com.badlogicgames.gdx/gdx/1.12.1/com/badlogic/gdx/Application.html
+https://libgdx.com/wiki/input/polling 

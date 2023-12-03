@@ -68,7 +68,7 @@ public class EventScreen implements Screen{
         }
         batch.end();
 
-        if (Gdx.input.isTouched()){
+        if (Gdx.input.justTouched()){
             finish();
         }
 

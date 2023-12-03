@@ -18,14 +18,13 @@ public class GameScreen implements Screen {
     public GameStatus gameStatus;
     public BitmapFont font;
     public Sounds sounds;
-
     public GameScreen(QuartaColoniaQuiz game) {
         this.game = game;
 
         board = new Board();
         player = new Player();
         dice = new Dice();
-        gameStatus = GameStatus.RUNNING;
+        gameStatus = GameStatus.PAUSED;
         font = new BitmapFont();
         sounds = new Sounds();
 
@@ -59,7 +58,10 @@ public class GameScreen implements Screen {
         }
         game.batch.draw(player.getPlayerTexture(), (player.position.getCurrent() % 7) * 195, 505, 195, 195);
         game.batch.end();
-        playing();
+
+        if (Gdx.input.justTouched()) {
+            playing();
+        }
     }
 
     public void playing() {
@@ -85,6 +87,7 @@ public class GameScreen implements Screen {
             }
         }
     }
+
 
     @Override
     public void resize(int width, int height) {
