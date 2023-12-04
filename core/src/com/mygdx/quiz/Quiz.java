@@ -6,40 +6,28 @@ import java.util.List;
 public class Quiz extends Event {
     private String question;
     private List<String> options;
-    private int correctOptionIndex;
+    private String correctOption;
 
-    public Quiz(String question, List<String> options, int correctOptionIndex, Texture quizTexture) {
+    public Quiz(String question, List<String> options, String correctOption, Texture quizTexture) {
         super(1);
         this.question = question;
         this.options = options;
-        this.correctOptionIndex = correctOptionIndex;
+        this.correctOption = correctOption;
         this.texture = quizTexture;
-
-        if (correctOptionIndex < 0 || correctOptionIndex >= options.size()) {
-            throw new IllegalArgumentException("Correct option index is out of bounds");
-        }
     }
 
     public String getQuestion() {
         return question;
     }
 
+    public String getCorrectOption(){
+        return correctOption;
+    }
+
     public List<String> getOptions() {
         return options;
     }
 
-    public void isOptionCorrect(int selectedOptionIndex, Player player) {
-        if (!(selectedOptionIndex - 1 == correctOptionIndex)) {
-            System.out.print("Wrong answer\n");
-            player.position.setPositions(player.position.getPrevious(), player.position.getPrevious());
-        } else {
-            System.out.print("Correct answer\n");
-        }
-    }
-    public boolean isOptionCorrect1(int selectedOptionIndex){
-        return selectedOptionIndex-1 == correctOptionIndex;
-
-    }
     @Override
     public String getMessage(Player player) {
         return null;

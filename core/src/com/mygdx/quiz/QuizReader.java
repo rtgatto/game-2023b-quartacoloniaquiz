@@ -25,7 +25,7 @@ public class QuizReader {
                 String pathTexture = "img/" + row[1] + ".png";
                 String question = row[2];
                 List<String> options = Arrays.asList(row[3], row[4], row[5], row[6], row[7]);
-                int correctOptionIndex = Integer.parseInt(row[8]);
+                String correctOptionIndex = row[8];
                 Texture texture = new Texture(Gdx.files.internal(pathTexture));
 
                 Quiz quiz = new Quiz(question, options, correctOptionIndex, texture);

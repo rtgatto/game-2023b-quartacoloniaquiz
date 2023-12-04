@@ -29,7 +29,7 @@ public class Square {
         double randomEvent = Math.random();
 
         // 30% chance of an event happening
-        if (randomEvent < 0.3) {
+        if (randomEvent < 0.7) {
             // Within the event, 33% chance for each type (Quiz, Plus, Minus)
             double randomType = Math.random();
             if (randomType < 0.33) {
@@ -54,10 +54,7 @@ public class Square {
     }
 
     public int getEventType() {
-        if (event != null) {
-            return event.getType();
-        }
-        return 0; // Default value for no event
+        return event.getType();
     }
 
     private Texture setRandomTexture() {

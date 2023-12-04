@@ -3,9 +3,17 @@ package com.mygdx.quiz.screens;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.Timer;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.quiz.*;
 import com.mygdx.quiz.Event;
 
@@ -19,6 +27,8 @@ public class EventScreen implements Screen{
     public Board board;
     public GameScreen gameScreen;
     public OrthographicCamera camera;
+    private Sounds sounds;
+    private Stage stage;
 
     public EventScreen(Player player, Board board, GameScreen gameScreen){
         this.event = board.squares[player.position.getCurrent()].getEvent();
@@ -29,6 +39,8 @@ public class EventScreen implements Screen{
         font = new BitmapFont();
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 1365, 700);
+        sounds = new Sounds();
+        stage = new Stage(new ScreenViewport());
     }
 
     @Override
@@ -36,7 +48,7 @@ public class EventScreen implements Screen{
     }
 
     @Override
-    public void render(float delta) {
+    public void render(final float delta) {
         Gdx.gl.glClearColor(100, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -46,22 +58,43 @@ public class EventScreen implements Screen{
         batch.begin();
 
         if (event instanceof Quiz){
-//            sounds.eventSound.play(1.0f);
+            sounds.eventSound.play(1.0f);
 
-            Quiz quiz = (Quiz) event;
-            font.draw(batch, quiz.getQuestion(), 10, 100);
-            int y = Gdx.graphics.getHeight() + 10;
-            for (String option : quiz.getOptions()){
-                font.draw(batch, option, 10, y);
-                y += 10;
+            Drawable drawable = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("buttons/button04.png"))));
+            TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
+            textButtonStyle.up = drawable;
+            textButtonStyle.down = drawable;
+            textButtonStyle.font = font;
+
+            final Quiz quiz = (Quiz) event;
+            font.draw(batch, quiz.getQuestion(), 10, Gdx.graphics.getHeight() + 20);
+
+            int height = 150;
+            for (final String option : quiz.getOptions()){
+                TextButton optionsButton = new TextButton(option, textButtonStyle);
+                optionsButton.setPosition(50, height);
+                optionsButton.addListener(new ClickListener(){
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        if (option.equals(quiz.getCorrectOption())){
+                            sounds.rightSound.play();
+                        }
+                        else {
+                            sounds.wrongSound.play();
+                            player.position.setPositions(player.position.getPrevious(), player.position.getPrevious());
+                        }
+                    }
+                });
+
+                stage.addActor(optionsButton);
+                height += 150;
             }
 
-//            if (quiz.isOptionCorrect1(userInput)) {
-//                sounds.rightSound.play(1.0f);
-//                gameStatus = GameStatus.RUNNING;
-//            } else {
-//                sounds.wrongSound.play(1.0f);
-//                gameStatus = GameStatus.RUNNING;
+            Gdx.input.setInputProcessor(stage);
+
+
+            stage.act(delta);
+            stage.draw();
         }
         else {
             font.draw(batch, event.getMessage(player), 10, Gdx.graphics.getHeight() + 100);
@@ -69,12 +102,9 @@ public class EventScreen implements Screen{
         batch.end();
 
         if (Gdx.input.justTouched()){
-            finish();
+            ScreenManager.setScreen(gameScreen);
         }
 
-    }
-    private void finish(){
-        ScreenManager.setScreen(gameScreen);
     }
 
     @Override
@@ -101,5 +131,6 @@ public class EventScreen implements Screen{
     public void dispose() {
         batch.dispose();
         font.dispose();
+        stage.dispose();
     }
 }
