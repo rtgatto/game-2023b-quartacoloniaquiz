@@ -14,14 +14,28 @@ Ganha quando o jogador chegar ao final do tabuleiro.
 ## Créditos e fontes
 
 <https://diariosm.com.br/cultura/revista_mix/turismo_na_regiao_um_guia_do_que_fazer_e_de_onde_ir_na_quarta_colonia.501569>
+
 <https://www.atlasvirtual.com.br/bagualosaurus.htm>
+
 <https://libgdx.com/dev/>
+
 <https://docs.gradle.org/>
+
 <https://happycoding.io/tutorials/libgdx/game-screens>
+
 <https://libgdx.com/wiki>
+
 <https://opengameart.org/content/rpg-sound-pack>
+
 <https://opengameart.org/content/boardgame-pack>
+
 <https://opengameart.org/content/54-casino-sound-effects-cards-dice-chips>
+
 <https://github.com/lichess-org/lila/tree/d1b042efd8bb90258177f5c5822112316221e9cc/public/sound>
+
 https://javadoc.io/static/com.badlogicgames.gdx/gdx/1.12.1/com/badlogic/gdx/Application.html
+
 https://libgdx.com/wiki/input/polling 
+
+https://opengameart.org/content/ui-buttons-and-slots
+
