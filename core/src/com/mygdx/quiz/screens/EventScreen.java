@@ -17,8 +17,6 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.quiz.*;
 import com.mygdx.quiz.Event;
 
-import java.io.StringReader;
-
 public class EventScreen implements Screen{
     public Event event;
     public SpriteBatch batch;
@@ -67,12 +65,12 @@ public class EventScreen implements Screen{
             textButtonStyle.font = font;
 
             final Quiz quiz = (Quiz) event;
-            font.draw(batch, quiz.getQuestion(), 10, Gdx.graphics.getHeight() + 20);
+            font.draw(batch, quiz.getQuestion(), 10, Gdx.graphics.getHeight() + 300);
 
-            int height = 150;
+            int y = 80;
             for (final String option : quiz.getOptions()){
                 TextButton optionsButton = new TextButton(option, textButtonStyle);
-                optionsButton.setPosition(50, height);
+                optionsButton.setPosition(50,  y);
                 optionsButton.addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
@@ -83,28 +81,25 @@ public class EventScreen implements Screen{
                             sounds.wrongSound.play();
                             player.position.setPositions(player.position.getPrevious(), player.position.getPrevious());
                         }
+                        ScreenManager.setScreen(gameScreen);
                     }
                 });
 
                 stage.addActor(optionsButton);
-                height += 150;
+                y += 100;
             }
-
             Gdx.input.setInputProcessor(stage);
-
 
             stage.act(delta);
             stage.draw();
         }
         else {
             font.draw(batch, event.getMessage(player), 10, Gdx.graphics.getHeight() + 100);
+            if (Gdx.input.justTouched()){
+                ScreenManager.setScreen(gameScreen);
+            }
         }
         batch.end();
-
-        if (Gdx.input.justTouched()){
-            ScreenManager.setScreen(gameScreen);
-        }
-
     }
 
     @Override
@@ -132,5 +127,8 @@ public class EventScreen implements Screen{
         batch.dispose();
         font.dispose();
         stage.dispose();
+        sounds.wrongSound.dispose();
+        sounds.rightSound.dispose();
+        sounds.eventSound.dispose();
     }
 }
