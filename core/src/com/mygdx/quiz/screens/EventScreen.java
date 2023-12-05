@@ -56,7 +56,7 @@ public class EventScreen implements Screen{
         batch.begin();
 
         if (event instanceof Quiz){
-            sounds.eventSound.play(1.0f);
+//            sounds.eventSound.play(1.0f);
 
             Drawable drawable = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("buttons/button04.png"))));
             TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
@@ -65,15 +65,16 @@ public class EventScreen implements Screen{
             textButtonStyle.font = font;
 
             final Quiz quiz = (Quiz) event;
-            font.draw(batch, quiz.getQuestion(), 10, Gdx.graphics.getHeight() + 300);
+            font.draw(batch, quiz.getQuestion(), 10, Gdx.graphics.getHeight() - 40);
 
-            int y = 80;
+            int y = Gdx.graphics.getHeight() - 550;
             for (final String option : quiz.getOptions()){
                 TextButton optionsButton = new TextButton(option, textButtonStyle);
                 optionsButton.setPosition(50,  y);
                 optionsButton.addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
+                        Gdx.input.setInputProcessor(null);
                         if (option.equals(quiz.getCorrectOption())){
                             sounds.rightSound.play();
                         }
@@ -94,11 +95,12 @@ public class EventScreen implements Screen{
             stage.draw();
         }
         else {
-            font.draw(batch, event.getMessage(player), 10, Gdx.graphics.getHeight() + 100);
+            font.draw(batch, event.getMessage(player), 10, Gdx.graphics.getHeight() - 100);
             if (Gdx.input.justTouched()){
                 ScreenManager.setScreen(gameScreen);
             }
         }
+
         batch.end();
     }
 

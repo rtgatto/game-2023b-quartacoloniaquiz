@@ -39,3 +39,11 @@ https://libgdx.com/wiki/input/polling
 
 https://opengameart.org/content/ui-buttons-and-slots
 
+https://libgdx.com/wiki/graphics/2d/scene2d/scene2d-ui
+
+https://github.com/elc117/game-2023b-coloniarpg/blob/main/colonia-game/core/src/com/coloniarpg/game/screens/QuestionScreen1.java
+
+https://github.com/elc117/game-2023b-coloniarpg/blob/main/colonia-game/core/src/com/coloniarpg/game/screens/FadeScreen.java
+
+https://javadoc.io/doc/com.badlogicgames.gdx/gdx/latest/com/badlogic/gdx/input/RemoteInput.html#setInputProcessor(com.badlogic.gdx.InputProcessor)
+
