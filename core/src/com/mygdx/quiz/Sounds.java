@@ -9,6 +9,7 @@ public class Sounds {
     public Sound moveSound;
     public Sound rightSound;
     public Sound wrongSound;
+    public Sound victory;
 
     public Sounds() {
         this.diceSound = Gdx.audio.newSound(Gdx.files.internal("sounds/dice.mp3"));
@@ -16,5 +17,6 @@ public class Sounds {
         this.moveSound = Gdx.audio.newSound(Gdx.files.internal("sounds/move.mp3"));
         this.rightSound = Gdx.audio.newSound(Gdx.files.internal("sounds/right.mp3"));
         this.wrongSound = Gdx.audio.newSound(Gdx.files.internal("sounds/wrong.mp3"));
+        this.victory = Gdx.audio.newSound(Gdx.files.internal("sounds/victory.mp3"));
     }
 }

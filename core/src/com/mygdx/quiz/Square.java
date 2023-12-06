@@ -5,10 +5,7 @@ import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.mygdx.quiz.events.Event;
-import com.mygdx.quiz.events.MinusEvent;
-import com.mygdx.quiz.events.PlusEvent;
-import com.mygdx.quiz.events.StayHereEvent;
+import com.mygdx.quiz.events.*;
 
 public class Square {
     private int number;

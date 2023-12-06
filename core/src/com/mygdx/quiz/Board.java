@@ -1,6 +1,7 @@
 package com.mygdx.quiz;
 
 import com.mygdx.quiz.events.Event;
+import com.mygdx.quiz.events.Quiz;
 
 public class Board {
     public Square[] squares;

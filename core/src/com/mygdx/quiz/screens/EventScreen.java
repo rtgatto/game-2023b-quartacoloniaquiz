@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.quiz.*;
 import com.mygdx.quiz.events.Event;
+import com.mygdx.quiz.events.Quiz;
 
 public class EventScreen implements Screen{
     public Event event;

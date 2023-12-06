@@ -46,7 +46,6 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-
         ScreenUtils.clear(245, 255, 0, 1);
 
         camera.update();
@@ -71,7 +70,7 @@ public class GameScreen implements Screen {
         sounds.moveSound.play(1.0f);
 
         if (player.checkWin()) {
-            Gdx.app.exit();
+            ScreenManager.setScreen(new VictoryScreen());
         }
         else {
             ScreenManager.setScreen(new EventScreen(player, board, this));

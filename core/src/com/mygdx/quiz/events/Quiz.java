@@ -1,8 +1,8 @@
-package com.mygdx.quiz;
+package com.mygdx.quiz.events;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.mygdx.quiz.events.Event;
+import com.mygdx.quiz.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
