@@ -1,7 +1,9 @@
-package com.mygdx.quiz;
+package com.mygdx.quiz.events;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.quiz.Player;
+import com.mygdx.quiz.events.Event;
 
 public class MinusEvent extends Event {
 

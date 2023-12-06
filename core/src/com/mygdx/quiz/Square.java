@@ -1,21 +1,23 @@
 package com.mygdx.quiz;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import jdk.internal.org.jline.terminal.Terminal;
+import com.mygdx.quiz.events.Event;
+import com.mygdx.quiz.events.MinusEvent;
+import com.mygdx.quiz.events.PlusEvent;
+import com.mygdx.quiz.events.StayHereEvent;
 
 public class Square {
     private int number;
     public Event event;
     private Texture texture;
 
-    public Square(int i, ArrayList<Quiz> quizzes) {
+    public Square(int i, Quiz quiz) {
         this.number = i;
-        this.event = createEvent(quizzes);
+        this.event = createEvent(quiz);
         this.texture = setRandomTexture();
     }
 
@@ -25,7 +27,7 @@ public class Square {
         this.texture = setRandomTexture();
     }
 
-    public Event createEvent(ArrayList<Quiz> quizzes) {
+    public Event createEvent(Quiz quiz) {
         double randomEvent = Math.random();
 
         // 30% chance of an event happening
@@ -33,9 +35,7 @@ public class Square {
             // Within the event, 33% chance for each type (Quiz, Plus, Minus)
             double randomType = Math.random();
             if (randomType < 0.33) {
-                Quiz quiz = quizzes.get(0);
-                quizzes.remove(0);
-                return quiz;
+                return quiz.getRandomQuiz();
             } else if (randomType < 0.66) {
                 return new PlusEvent();
             } else {

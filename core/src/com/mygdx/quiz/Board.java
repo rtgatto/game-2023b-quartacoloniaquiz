@@ -1,9 +1,6 @@
 package com.mygdx.quiz;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.opencsv.exceptions.CsvException;
-import java.io.IOException;
-import java.util.ArrayList;
+import com.mygdx.quiz.events.Event;
 
 public class Board {
     public Square[] squares;
@@ -17,10 +14,10 @@ public class Board {
     private void initializeBoard() {
         squares[0] = new Square(0);
 
-        ArrayList<Quiz> quizzes = QuizReader.readQuizzesFromCSV();
+        Quiz quiz = new Quiz();
 
         for (int i = 1; i < squares.length; i++) {
-            squares[i] = new Square(i, quizzes);
+            squares[i] = new Square(i, quiz);
         }
     }
 

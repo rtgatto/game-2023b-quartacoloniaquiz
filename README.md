@@ -47,3 +47,5 @@ https://github.com/elc117/game-2023b-coloniarpg/blob/main/colonia-game/core/src/
 
 https://javadoc.io/doc/com.badlogicgames.gdx/gdx/latest/com/badlogic/gdx/input/RemoteInput.html#setInputProcessor(com.badlogic.gdx.InputProcessor)
 
+https://acervolima.com/obtendo-elementos-aleatorios-de-arraylist-em-java/
+

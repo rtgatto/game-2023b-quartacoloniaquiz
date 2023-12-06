@@ -15,7 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.quiz.*;
-import com.mygdx.quiz.Event;
+import com.mygdx.quiz.events.Event;
 
 public class EventScreen implements Screen{
     public Event event;
@@ -56,8 +56,6 @@ public class EventScreen implements Screen{
         batch.begin();
 
         if (event instanceof Quiz){
-            sounds.eventSound.play();
-
             Drawable drawable = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("buttons/button04.png"))));
             TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();
             textButtonStyle.up = drawable;

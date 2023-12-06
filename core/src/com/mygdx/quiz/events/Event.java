@@ -1,6 +1,7 @@
-package com.mygdx.quiz;
+package com.mygdx.quiz.events;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.quiz.Player;
 
 public abstract class Event {
     private int type; // 0: Stay Here Event, 1: Quiz, 2: Plus, 3: Minus, for a random generator to
