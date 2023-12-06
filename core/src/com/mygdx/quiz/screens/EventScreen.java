@@ -56,7 +56,7 @@ public class EventScreen implements Screen{
         batch.begin();
 
         if (event instanceof Quiz){
-//            sounds.eventSound.play(1.0f);
+            sounds.eventSound.play();
 
             Drawable drawable = new TextureRegionDrawable(new TextureRegion(new Texture(Gdx.files.internal("buttons/button04.png"))));
             TextButton.TextButtonStyle textButtonStyle = new TextButton.TextButtonStyle();

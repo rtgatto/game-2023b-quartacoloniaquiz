@@ -29,7 +29,7 @@ public class GameScreen implements Screen {
         sounds = new Sounds();
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 1365, 700); // 195
+        camera.setToOrtho(false, 1365, 700);
 
         rectangles = new MyRectangle[7];
 
