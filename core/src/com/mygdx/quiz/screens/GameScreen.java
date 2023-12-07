@@ -56,6 +56,7 @@ public class GameScreen implements Screen {
             game.batch.draw(rectangle.texture, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
         }
         game.batch.draw(player.getPlayerTexture(), (player.position.getCurrent() % 7) * 195, 505, 195, 195);
+        font.draw(game.batch, "Actual position: " + player.position.getCurrent(), 100, 200);
         game.batch.end();
 
         if (Gdx.input.justTouched()) {
