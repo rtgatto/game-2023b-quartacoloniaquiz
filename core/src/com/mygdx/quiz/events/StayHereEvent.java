@@ -3,7 +3,6 @@ package com.mygdx.quiz.events;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.quiz.Player;
-import com.mygdx.quiz.events.Event;
 
 public class StayHereEvent extends Event {
 
@@ -17,11 +16,6 @@ public class StayHereEvent extends Event {
     public String getMessage(Player player) {
         return defaultMessage;
     }
-
-    // @Override
-    // protected int calculateActualSquaresToJump(Player player) {
-    // return 0;
-    // }
 
     @Override
     public void applyEvent(Player player) {

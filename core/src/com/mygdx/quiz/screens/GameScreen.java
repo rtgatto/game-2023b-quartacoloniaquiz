@@ -10,7 +10,7 @@ import com.mygdx.quiz.*;
 public class GameScreen implements Screen {
 
     QuartaColoniaQuiz game;
-    private OrthographicCamera camera;
+    private final OrthographicCamera camera;
     public MyRectangle[] rectangles;
     public Board board;
     public Player player;

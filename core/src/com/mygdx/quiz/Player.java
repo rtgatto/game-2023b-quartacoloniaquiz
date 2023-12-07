@@ -2,7 +2,6 @@ package com.mygdx.quiz;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.mygdx.quiz.Position;
 
 public class Player {
     public Position position;

@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.quiz.Player;
 
 public abstract class Event {
-    private int type; // 0: Stay Here Event, 1: Quiz, 2: Plus, 3: Minus, for a random generator to
+    private final int type; // 0: Stay Here Event, 1: Quiz, 2: Plus, 3: Minus, for a random generator to
                       // generate
                       // events for squares
     protected String defaultMessage;

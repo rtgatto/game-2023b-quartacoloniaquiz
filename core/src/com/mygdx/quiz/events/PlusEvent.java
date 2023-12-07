@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.quiz.Dice;
 import com.mygdx.quiz.Player;
-import com.mygdx.quiz.events.Event;
 
 public class PlusEvent extends Event {
 
@@ -25,14 +24,8 @@ public class PlusEvent extends Event {
 
     // @Override
     public String getMessage(Player player) {
-        return defaultMessage; // + "You'll jump ahead " + calculateActualSquaresToJump(player) + " squares.";
+        return defaultMessage;
     }
-
-    // @Override
-    // protected int calculateActualSquaresToJump(Player player) {
-    // Calculate actual squares to jump after boundary checks
-    // return Math.min(squaresToJump, 120 - player.position.getCurrent());
-    // }
 
     @Override
     public void applyEvent(Player player) {

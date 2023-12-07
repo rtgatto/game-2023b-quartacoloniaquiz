@@ -1,0 +1,459 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 3,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.mygdx.quiz.screens.EventScreen",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_104370703 { 
+   	label=mygdx
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1554561748 { 
+   	label=quiz
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   Board670633313[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Board</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   squares: Square[] [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" ># getEventForSquare(position: int): Event</TD></TR>
+<TR><TD ALIGN="LEFT" >- initializeBoard()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Dice670633313[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Dice</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   value: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ roll(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Player670633313[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Player</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   position: Position [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   texture: Texture [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ checkWin(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ move(newPosition: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Position670633313[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Position</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   current: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   previous: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ returnSquares()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+QuartaColoniaQuiz670633313[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)QuartaColoniaQuiz</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   batch: SpriteBatch [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ create()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ dispose()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Sounds670633313[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Sounds</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   diceSound: Sound [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   eventSound: Sound [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   moveSound: Sound [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   rightSound: Sound [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   victory: Sound [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   wrongSound: Sound [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Square670633313[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Square</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   event: Event [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   number: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   texture: Texture [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ createEvent(quiz: Quiz): Event</TD></TR>
+<TR><TD ALIGN="LEFT" >- setRandomTexture(): Texture</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+subgraph cluster_1808905587 { 
+   	label=events
+	labeljust=l
+	fillcolor="#c4c4c4"
+	style=filled
+   
+   Event1645815226[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Event</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   defaultMessage: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   squaresToJump: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   texture: Texture [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   type: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ applyEvent(player: Player)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getMessage(player: Player): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MinusEvent1645815226[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MinusEvent</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ applyEvent(player: Player)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getMessage(player: Player): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PlusEvent1645815226[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PlusEvent</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ applyEvent(player: Player)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getMessage(player: Player): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Quiz1645815226[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Quiz</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   correctOption: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   options: List&lt;String&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   question: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   quizzes: ArrayList&lt;Quiz&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ applyEvent(player: Player)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ createQuizzes()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getMessage(player: Player): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+StayHereEvent1645815226[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)StayHereEvent</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ applyEvent(player: Player)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getMessage(player: Player): String</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_750582675 { 
+   	label=screens
+	labeljust=l
+	fillcolor="#c4c4c4"
+	style=filled
+   
+   EventScreen472745478[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)EventScreen</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   batch: SpriteBatch [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   board: Board [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   camera: OrthographicCamera [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   event: Event [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   font: BitmapFont [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   gameScreen: GameScreen [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   player: Player [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   sounds: Sounds [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   stage: Stage [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ dispose()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hide()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pause()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(delta: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ resize(width: int, height: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ resume()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ show()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameScreen472745478[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)GameScreen</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   board: Board [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   camera: OrthographicCamera [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   dice: Dice [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   font: BitmapFont [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   game: QuartaColoniaQuiz [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   gameStatus: GameStatus [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   player: Player [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   rectangles: MyRectangle[] [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   sounds: Sounds [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ dispose()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hide()</TD></TR>
+<TR><TD ALIGN="LEFT" >- moveSquares()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pause()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ playing()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(delta: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ resize(width: int, height: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ resume()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ show()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+MyRectangle472745478[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)MyRectangle</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   square: Square [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   texture: Texture [0..1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+GameStatus472745478[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(E)GameStatus</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >RUNNING</TD></TR>
+<TR><TD ALIGN="LEFT" >PAUSED</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+VictoryScreen472745478[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)VictoryScreen</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   camera: OrthographicCamera [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   font: BitmapFont [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   sounds: Sounds [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   batch: SpriteBatch [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ dispose()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hide()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pause()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ playing()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render(delta: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ resize(width: int, height: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ resume()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ show()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ScreenManager472745478[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ScreenManager</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ initialize(game: Game)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+} 
+
+'edges    
+Board670633313 -> Square670633313[label="squares
+[0..*]"];
+Event1645815226 -> MinusEvent1645815226[arrowhead=none, arrowtail=empty, dir=both];
+Event1645815226 -> PlusEvent1645815226[arrowhead=none, arrowtail=empty, dir=both];
+Event1645815226 -> Quiz1645815226[arrowhead=none, arrowtail=empty, dir=both];
+Event1645815226 -> StayHereEvent1645815226[arrowhead=none, arrowtail=empty, dir=both];
+EventScreen472745478 -> Board670633313[label="board
+[0..1]"];
+EventScreen472745478 -> Event1645815226[label="event
+[0..1]"];
+EventScreen472745478 -> GameScreen472745478[label="gameScreen
+[0..1]"];
+EventScreen472745478 -> Player670633313[label="player
+[0..1]"];
+EventScreen472745478 -> Sounds670633313[label="sounds
+[0..1]"];
+GameScreen472745478 -> Board670633313[label="board
+[0..1]"];
+GameScreen472745478 -> Dice670633313[label="dice
+[1]"];
+GameScreen472745478 -> MyRectangle472745478[label="rectangles
+[7]"];
+GameScreen472745478 -> Player670633313[label="player
+[0..1]"];
+GameScreen472745478 -> QuartaColoniaQuiz670633313[label="game
+[0..1]"];
+GameScreen472745478 -> Sounds670633313[label="sounds
+[0..1]"];
+GameScreen472745478 -> VictoryScreen472745478
+MinusEvent1645815226 -> Player670633313[label="applyEvent() -> move()"];
+MyRectangle472745478 -> Square670633313[label="square
+[1]"];
+Player670633313 -> Position670633313[label="position
+[1]"];
+PlusEvent1645815226 -> Player670633313[label="applyEvent() -> move()"];
+QuartaColoniaQuiz670633313 -> ScreenManager472745478[label="create() -> initialize()"];
+GameStatus472745478 -> GameScreen472745478
+}
+@enduml

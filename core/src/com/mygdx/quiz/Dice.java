@@ -1,7 +1,5 @@
 package com.mygdx.quiz;
 
-import com.badlogic.gdx.graphics.Texture;
-
 public class Dice {
     public int value;
 

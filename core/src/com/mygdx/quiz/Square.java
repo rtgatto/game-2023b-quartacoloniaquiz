@@ -1,16 +1,16 @@
 package com.mygdx.quiz;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.mygdx.quiz.events.*;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Square {
-    private int number;
+    private final int number;
     public Event event;
-    private Texture texture;
+    private final Texture texture;
 
     public Square(int i, Quiz quiz) {
         this.number = i;

@@ -1,6 +1,7 @@
 package com.mygdx.quiz.screens;
 
-import com.badlogic.gdx.*;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,7 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.mygdx.quiz.*;
+import com.mygdx.quiz.Board;
+import com.mygdx.quiz.Player;
+import com.mygdx.quiz.Sounds;
 import com.mygdx.quiz.events.Event;
 import com.mygdx.quiz.events.Quiz;
 
@@ -26,8 +29,8 @@ public class EventScreen implements Screen{
     public Board board;
     public GameScreen gameScreen;
     public OrthographicCamera camera;
-    private Sounds sounds;
-    private Stage stage;
+    private final Sounds sounds;
+    private final Stage stage;
 
     public EventScreen(Player player, Board board, GameScreen gameScreen){
         this.event = board.squares[player.position.getCurrent()].getEvent();

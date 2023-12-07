@@ -9,10 +9,10 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.quiz.Sounds;
 
 public class VictoryScreen implements Screen {
-    private OrthographicCamera camera;
-    private Sounds sounds;
-    private BitmapFont font;
-    private SpriteBatch batch;
+    private final OrthographicCamera camera;
+    private final Sounds sounds;
+    private final BitmapFont font;
+    private final SpriteBatch batch;
 
     public VictoryScreen(){
         batch = new SpriteBatch();
