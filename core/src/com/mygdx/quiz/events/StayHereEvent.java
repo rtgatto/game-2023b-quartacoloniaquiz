@@ -8,8 +8,8 @@ public class StayHereEvent extends Event {
 
     public StayHereEvent() {
         super(0);
-        super.defaultMessage = "Stay here and roll your dice.";
-        super.texture = new Texture(Gdx.files.internal("img/null.png"));
+        super.defaultMessage = "Role o dado para avançar";
+        super.texture = new Texture(Gdx.files.internal("img/stayherebg.jpg"));
     }
 
     @Override

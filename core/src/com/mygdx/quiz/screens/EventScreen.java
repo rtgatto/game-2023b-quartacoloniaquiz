@@ -20,6 +20,7 @@ import com.mygdx.quiz.Player;
 import com.mygdx.quiz.Sounds;
 import com.mygdx.quiz.events.Event;
 import com.mygdx.quiz.events.Quiz;
+import com.mygdx.quiz.screens.GameStatus;
 
 public class EventScreen implements Screen{
     public Event event;
@@ -31,6 +32,8 @@ public class EventScreen implements Screen{
     public OrthographicCamera camera;
     private final Sounds sounds;
     private final Stage stage;
+    private boolean jogadorErrou = false;
+    private Texture perdeu;
 
     public EventScreen(Player player, Board board, GameScreen gameScreen){
         this.event = board.squares[player.position.getCurrent()].getEvent();
@@ -40,9 +43,10 @@ public class EventScreen implements Screen{
         batch = new SpriteBatch();
         font = new BitmapFont();
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 1365, 700);
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); //camera sempre pega todo o tamanho da tela
         sounds = new Sounds();
         stage = new Stage(new ScreenViewport());
+        perdeu = new Texture(Gdx.files.internal("img/morreu.jpg"));
     }
 
     @Override
@@ -51,8 +55,8 @@ public class EventScreen implements Screen{
 
     @Override
     public void render(final float delta) {
-        Gdx.gl.glClearColor(100, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        //Gdx.gl.glClearColor(1, 0, 0, 1);
+        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
         batch.setProjectionMatrix(camera.combined);
@@ -67,25 +71,33 @@ public class EventScreen implements Screen{
             textButtonStyle.font = font;
 
             final Quiz quiz = (Quiz) event;
+
+             // Desenha a imagem de fundo do Quiz
+            if (quiz.getFundo() != null) {
+            batch.draw(quiz.getFundo(), 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            }
+
             font.draw(batch, quiz.getQuestion(), 10, Gdx.graphics.getHeight() - 40);
 
-            int y = Gdx.graphics.getHeight() - 550;
+            int y = Gdx.graphics.getHeight() - 750;
             for (final String option : quiz.getOptions()){
                 TextButton optionsButton = new TextButton(option, textButtonStyle);
-                optionsButton.setPosition(50,  y);
+                optionsButton.setPosition(50, y);
                 optionsButton.addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         Gdx.input.setInputProcessor(null);
                         if (option.equals(quiz.getCorrectOption())){
                             sounds.rightSound.play();
+                            ScreenManager.setScreen(gameScreen);
                         }
                         else {
                             sounds.wrongSound.play();
-                            player.position.setPositions(player.position.getPrevious(), player.position.getPrevious());
-                        }
-                        ScreenManager.setScreen(gameScreen);
+                            jogadorErrou = true;
+                            }
+                            //ScreenManager.setScreen(gameScreen);
                     }
+                    
                 });
 
                 stage.addActor(optionsButton);
@@ -97,14 +109,27 @@ public class EventScreen implements Screen{
             stage.draw();
         }
         else {
-            font.draw(batch, event.getMessage(player), 10, Gdx.graphics.getHeight() - 100);
+            font.draw(batch, event.getMessage(player), 800, Gdx.graphics.getHeight() - 600);
             if (Gdx.input.justTouched()){
                 ScreenManager.setScreen(gameScreen);
             }
         }
 
         batch.end();
+
+        if (jogadorErrou) {
+            // se o jogador errou a pergunta mostra a tela de gameover
+            batch.begin();
+            batch.draw(perdeu, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            batch.end();
+    
+            // espera uma interação do usuário para avançar para outra tela
+            if (Gdx.input.justTouched()) {
+                ScreenManager.setScreen(gameScreen);
+            }
+        }
     }
+    
 
     @Override
     public void resize(int width, int height) {
@@ -125,6 +150,7 @@ public class EventScreen implements Screen{
     public void hide() {
 
     }
+    
 
     @Override
     public void dispose() {

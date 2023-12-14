@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.quiz.*;
+import com.mygdx.quiz.events.Quiz;
+import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.quiz.events.Event;
 
 public class GameScreen implements Screen {
 
@@ -18,6 +21,9 @@ public class GameScreen implements Screen {
     public GameStatus gameStatus;
     public BitmapFont font;
     public Sounds sounds;
+    private final Texture backgroundImage;
+    private Texture bossimg;
+    private Event currentEvent;
     public GameScreen(QuartaColoniaQuiz game) {
         this.game = game;
 
@@ -26,6 +32,7 @@ public class GameScreen implements Screen {
         dice = new Dice();
         gameStatus = GameStatus.PAUSED;
         font = new BitmapFont();
+        font.getData().setScale(1.5f);
         sounds = new Sounds();
 
         camera = new OrthographicCamera();
@@ -38,6 +45,10 @@ public class GameScreen implements Screen {
             rectangles[i] = new MyRectangle(board.squares[i], x);
             x += 195;
         }
+        backgroundImage = new Texture(Gdx.files.internal("img/dungeon.jpg"));
+
+        bossimg = new Texture(Gdx.files.internal("img/bossfight.jpg"));
+        currentEvent = null; // quando começa o jogo considera que nao há nenhum evento na tela
     }
 
     @Override
@@ -46,19 +57,34 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        ScreenUtils.clear(245, 255, 0, 1);
-
         camera.update();
         game.batch.setProjectionMatrix(camera.combined);
-
+    
         game.batch.begin();
-        for (MyRectangle rectangle : rectangles) {
-            game.batch.draw(rectangle.texture, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+    
+        if (gameStatus == GameStatus.GAME_OVER) {
+           font.draw(game.batch, "Game Over!", 600, 350);
+        } else {
+            game.batch.draw(backgroundImage, 0, 0, 1365, 700);
+            for (MyRectangle rectangle : rectangles) {
+                game.batch.draw(rectangle.texture, rectangle.x, rectangle.y, rectangle.width, rectangle.height);
+            }
+    
+            if (currentEvent != null) {
+                if (currentEvent instanceof Quiz) {
+                    Quiz quiz = (Quiz) currentEvent;
+                    if (quiz.getFundo() != null) {
+                        game.batch.draw(quiz.getFundo(), 0, 0, 1365, 700);
+                    }
+                }
+            }
+    
+            game.batch.draw(player.getPlayerTexture(), (player.position.getCurrent() % 7) * 195, 505, 195, 195);
+            font.draw(game.batch, "POSIÇÃO ATUAL: " + player.position.getCurrent(), 550, 200);
         }
-        game.batch.draw(player.getPlayerTexture(), (player.position.getCurrent() % 7) * 195, 505, 195, 195);
-        font.draw(game.batch, "Actual position: " + player.position.getCurrent(), 100, 200);
+    
         game.batch.end();
-
+    
         if (Gdx.input.justTouched()) {
             playing();
         }
@@ -76,6 +102,18 @@ public class GameScreen implements Screen {
         else {
             ScreenManager.setScreen(new EventScreen(player, board, this));
         }
+        if (currentEvent != null && currentEvent instanceof Quiz) {
+            // define a imagem de fundo do quiz
+            bossimg = ((Quiz) currentEvent).getFundo();
+        }
+    }
+
+    public void setCurrentEvent(Event event) {
+        this.currentEvent = event;
+    }
+
+    public void gameOver() {
+        gameStatus = GameStatus.GAME_OVER;
     }
 
     private void moveSquares() {

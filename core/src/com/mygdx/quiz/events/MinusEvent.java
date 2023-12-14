@@ -6,10 +6,11 @@ import com.mygdx.quiz.Player;
 
 public class MinusEvent extends Event {
 
+    
     public MinusEvent() {
         super(3); // Assuming 3 represents a Minus Event
-        super.texture = new Texture(Gdx.files.internal("img/bagualosaurus.png")); // Add minus texture image
-        super.defaultMessage = "Oh no! You got a Minus Event. ";
+        super.texture = new Texture(Gdx.files.internal("img/minuseventbg.jpg")); // nao funcionou
+        super.defaultMessage = "Você tropeçou e caiu algumas casas para trás";
         super.squaresToJump = (int) (Math.random() * 10) + 1; // Random number from 1 to 10
     }
 
@@ -17,7 +18,7 @@ public class MinusEvent extends Event {
         return super.getTexture();
     }
 
-    public int getSquaresToJump() {
+        public int getSquaresToJump() {
         return squaresToJump;
     }
 
@@ -26,15 +27,12 @@ public class MinusEvent extends Event {
         return defaultMessage;// + "You'll jump back " + calculateActualSquaresToJump(player) + " squares.";
     }
 
-    // @Override
-    // protected int calculateActualSquaresToJump(Player player) {
-    // return Math.max(player.position.getCurrent() - squaresToJump, 0);
-    // }
 
     @Override
     public void applyEvent(Player player) {
-        int newPosition = player.position.getCurrent() - getSquaresToJump();
-        // Ensure the player doesn't jump out of boundaries
+        // tentando fazer com que o MinusEvent faça com que o jogador volte casas nao avance
+        int newPosition = player.position.getCurrent() - squaresToJump;
+        // nao deixa o player ir pra posição menor que 0
         if (newPosition < 0) {
             newPosition = 0;
         }

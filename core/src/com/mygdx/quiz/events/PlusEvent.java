@@ -10,7 +10,7 @@ public class PlusEvent extends Event {
     public PlusEvent() {
         super(2); // Assuming 2 represents a Plus Event
         super.texture = new Texture(Gdx.files.internal("img/quarta_colonia.png")); // Add plus texture image
-        super.defaultMessage = "You got a Plus Event! ";
+        super.defaultMessage = "Você encontrou um atalho";
         super.squaresToJump = new Dice().roll();
     }
 

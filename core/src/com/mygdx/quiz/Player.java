@@ -9,7 +9,7 @@ public class Player {
 
     public Player() {
         this.position = new Position(); // player starts at position 0
-        this.texture = new Texture(Gdx.files.internal("img/player.png"));
+        this.texture = new Texture(Gdx.files.internal("img/player1.png"));
     }
 
     public void move(int newPosition) {

@@ -58,13 +58,13 @@ public class Square {
         ArrayList<String> namesTextures = new ArrayList<>();
         Random random = new Random();
 
-        namesTextures.add("aquamarine.png");
-        namesTextures.add("dark_blue.png");
-        namesTextures.add("dark_slate_gray.png");
-        namesTextures.add("dark_spring_green.png");
-        namesTextures.add("federal_blue.png");
-        namesTextures.add("mint.png");
-        namesTextures.add("jade.png");
+        namesTextures.add("tile1.jpg");
+        namesTextures.add("tile2.jpg");
+        namesTextures.add("tile1.jpg");
+        namesTextures.add("tile6.jpg");
+        namesTextures.add("tile6.jpg");
+        namesTextures.add("tile2.jpg");
+        namesTextures.add("tile7.jpg");
 
         int index = random.nextInt(namesTextures.size());
         String color = namesTextures.get(index);
